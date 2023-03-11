@@ -14,7 +14,7 @@ function TerritoryPage() {
       <div class="d-grid gap-2 col-1 mx-5">   <Link href="/">Home</Link></div>
      
       
-      <h1 class="d-grid gap-2 col-1 mx-5">Territory</h1>
+      <h2 class="d-grid gap-2 col-1 mx-5 my-3">Territory</h2>
       <li class="d-grid gap-2 col-1 mx-5">
         <button class="btn btn-primary">
           <Link href="/Part2Gameplay/CurrentConstructionPlan">
