@@ -18,14 +18,14 @@ function SetConstructionPlanPlayer1() {
       
       <div><textarea rows={25} cols={100}></textarea></div>
       
-      <li class="d-grid gap-2 col-1 ">
+      <div class="d-grid gap-2 col-1 ">
         <button class="btn btn-primary">
         <Link href="/Part1SetupGame/SetConfigurationPlan">Back</Link>
         </button> <button class="btn btn-primary">
         <Link href="/Part1SetupGame/SetConstructionPlanPlayer2">Next</Link>
         </button>
-      </li>
- 
+      </div>
+     
     </div>
   )
 }
