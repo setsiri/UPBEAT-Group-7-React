@@ -12,10 +12,10 @@ function HowtoPlay() {
         
       </Head>
      
-      <button class="btn btn-primary"><Link href="/">Home</Link></button>
+     <Link href="/">Home</Link>
       
         
-      <h1>HowtoPlay</h1>
+      <h2>HowtoPlay</h2>
       <p>
         
       </p>
