@@ -104,8 +104,8 @@ a {
 
 .T1 {
   display:flex;
-  --s: 100px;  /* size  */
-  --m: 3.5px;    /* margin */
+  --s: 10vh;  /* size  */
+  --m: 0.3vh;    /* margin */
   --f: calc(1.732 * var(--s) + 4 * var(--m)  - 1px);
 }
 
