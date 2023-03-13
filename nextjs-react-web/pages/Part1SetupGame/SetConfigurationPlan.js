@@ -34,7 +34,16 @@ function SetConfigurationPlan() {
       <h2>SetConfigurationPlan</h2>
 
       <div>
-        <textarea rows={25} cols={100} value={configText}></textarea>
+        <textarea
+          rows={25}
+          cols={100}
+          value={configText}
+          style={{
+            fontSize: "30px",
+            width: "1000px",
+            height: "550px",
+          }}
+        ></textarea>
       </div>
 
       <h5>
