@@ -30,18 +30,66 @@ function SetConfigurationPlan() {
 
       <h2>SetConfigurationPlan</h2>
 
-      <div>
-        <textarea
-          rows={25}
-          cols={100}
-          value={configText}
-          style={{
-            fontSize: "30px",
-            width: "1000px",
-            height: "550px",
-          }}
-        ></textarea>
-      </div>
+     
+      <div className="input-group">
+  <span className="input-group-text">M & N</span>
+  <input type="number" min="5" max="15" aria-label="First name" className="form-control" placeholder="M"></input>
+  
+  <span className="input-group-text">X</span>
+  <input type="number" min="5" max="15" aria-label="Last name" className="form-control" placeholder="N"></input>
+  
+</div>
+<div className="input-group">
+  <span className="input-group-text">init_plan_min</span>
+  <input type="number" aria-label="First name" className="form-control" placeholder="5"></input>
+  
+</div>
+<div className="input-group">
+ 
+  <span className="input-group-text">init_plan_sec</span>
+  <input type="number" aria-label="Last name" className="form-control" placeholder="0"></input>
+</div>
+
+<div className="input-group">
+  <span className="input-group-text">init_budget</span>
+  <input type="number" aria-label="First name" className="form-control" placeholder="10000"></input>
+ 
+</div>
+<div className="input-group">
+ 
+  <span className="input-group-text">init_center_dep</span>
+  <input type="number" aria-label="Last name" className="form-control" placeholder="100"></input>
+</div>
+
+<div className="input-group">
+  <span className="input-group-text">plan_rev_min</span>
+  <input type="number" aria-label="First name" className="form-control" placeholder="30"></input>
+ 
+</div>
+<div className="input-group">
+  
+  <span className="input-group-text">plan_rev_sec</span>
+  <input type="number" aria-label="Last name" className="form-control" placeholder="0"></input>
+  
+</div>
+<div className="input-group">
+  
+  <span className="input-group-text">rev_cost</span>
+  <input type="number" aria-label="Last name" className="form-control" placeholder="100"></input>
+</div>
+
+<div className="input-group">
+  <span className="input-group-text">max_dep</span>
+  <input type="number" aria-label="First name" className="form-control" placeholder="1000000"></input>
+  
+</div>
+<div className="input-group">
+ 
+  <span className="input-group-text">interest_pct</span>
+  <input type="number" aria-label="Last name" className="form-control" placeholder="5"></input>
+</div>
+
+    
 
       <h5>
         state : computing...<i className="bi bi-hourglass-split"></i> / compute
