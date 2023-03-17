@@ -1,8 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
+import { Client } from "@stomp/stompjs";
+
+let client: Client;
 
 function CurrentConstructionPlan() {
+  const [curPlan, setCurPlan] = useState("done");
+  const [curPlayer, setCurPlayer] = useState(1);
+
+  useEffect(() => {
+    if (!client) {
+      client = new Client({
+        brokerURL: "ws://localhost:8080/demo-websocket",
+        onConnect: () => {
+          client.subscribe("/game/get/data", (message) => {
+            const body = JSON.parse(message.body);
+            console.log(body);
+          });
+
+          client.activate();
+
+          client.publish({
+            destination: "/player/want/data",
+          });
+        },
+      });
+    }
+  }, []);
+
   return (
     <div className="d-grid gap-2 col-1 mx-5  text-black">
       <div className="  my-3 text-black">
@@ -11,14 +37,14 @@ function CurrentConstructionPlan() {
         </button>
       </div>
 
-      <h2>CurrentConstructionPlan</h2>
+      <h2>CurrentConstruction Plan Of Player {curPlayer}</h2>
       <li className="d-grid gap-2 col-1 ">
         <button className="btn btn-primary">
           <Link href="/game_play/TerritoryPage">TerritoryPage</Link>
         </button>
       </li>
       <div>
-        <textarea rows={22} cols={100}></textarea>
+        <textarea rows={22} cols={100} value={curPlan}></textarea>
       </div>
 
       <li className="d-grid gap-2 col-1">
