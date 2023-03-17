@@ -1,11 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
+import { Client } from "@stomp/stompjs";
+
+let client: Client;
 
 function SetConfigurationPlan() {
-  const [configText, setConfigText] = useState(
-    "m=20 \nn=15 \ninit_plan_min=5 \ninit_plan_sec=0 \ninit_budget=10000 \ninit_center_dep=100 \nplan_rev_min=30 \nplan_rev_sec=0 \nrev_cost=100 \nmax_dep=1000000 \ninterest_pct=5"
-  );
+  const [m, setM] = useState(10);
+  const [n, setN] = useState(10);
+  const [init_plan_min, setInit_plan_min] = useState(5);
+  const [init_plan_sec, setInit_plan_sec] = useState(0);
+  const [init_budget, setInit_budget] = useState(10000);
+  const [init_center_dep, setInit_center_dep] = useState(100);
+  const [plan_rev_min, setPlan_rev_min] = useState(30);
+  const [plan_rev_sec, setPlan_rev_sec] = useState(0);
+  const [rev_cost, setRev_cost] = useState(100);
+  const [max_dep, setMax_dep] = useState(1000000);
+  const [interest_pct, setInterest_pct] = useState(5);
+
+  useEffect(() => {
+    if (!client) {
+      client = new Client({
+        brokerURL: "ws://localhost:8080/demo-websocket",
+        onConnect: () => {},
+      });
+      client.activate();
+    }
+  }, []);
+
+  const onNext = () => {
+    if (client) {
+      if (client.connected) {
+        client.publish({
+          destination: "/player/set/configuration",
+          body: JSON.stringify({
+            m: m,
+            n: n,
+            init_plan_min: init_plan_min,
+            init_plan_sec: init_plan_sec,
+            init_budget: init_budget,
+            init_center_dep: init_center_dep,
+            plan_rev_min: plan_rev_min,
+            plan_rev_sec: plan_rev_sec,
+            rev_cost: rev_cost,
+            max_dep: max_dep,
+            interest_pct: interest_pct,
+          }),
+        });
+      }
+    }
+  };
 
   return (
     <div className="d-grid gap-2 col-1 mx-5  text-black">
@@ -25,7 +69,11 @@ function SetConfigurationPlan() {
           max="15"
           aria-label="First name"
           className="form-control"
-          placeholder="M"
+          placeholder={m}
+          value={m}
+          onChange={(event) => {
+            setM(Number.parseInt(event.target.value));
+          }}
         ></input>
 
         <span className="input-group-text">X</span>
@@ -35,7 +83,11 @@ function SetConfigurationPlan() {
           max="15"
           aria-label="Last name"
           className="form-control"
-          placeholder="N"
+          placeholder={n}
+          value={n}
+          onChange={(event) => {
+            setN(Number.parseInt(event.target.value));
+          }}
         ></input>
       </div>
       <div className="input-group">
@@ -44,7 +96,11 @@ function SetConfigurationPlan() {
           type="number"
           aria-label="First name"
           className="form-control"
-          placeholder="5"
+          placeholder={init_plan_min}
+          value={init_plan_min}
+          onChange={(event) => {
+            setInit_plan_min(Number.parseInt(event.target.value));
+          }}
         ></input>
       </div>
       <div className="input-group">
@@ -53,7 +109,11 @@ function SetConfigurationPlan() {
           type="number"
           aria-label="Last name"
           className="form-control"
-          placeholder="0"
+          placeholder={init_plan_sec}
+          value={init_plan_sec}
+          onChange={(event) => {
+            setInit_plan_sec(Number.parseInt(event.target.value));
+          }}
         ></input>
       </div>
 
@@ -63,7 +123,11 @@ function SetConfigurationPlan() {
           type="number"
           aria-label="First name"
           className="form-control"
-          placeholder="10000"
+          placeholder={init_budget}
+          value={init_budget}
+          onChange={(event) => {
+            setInit_budget(Number.parseInt(event.target.value));
+          }}
         ></input>
       </div>
       <div className="input-group">
@@ -72,7 +136,11 @@ function SetConfigurationPlan() {
           type="number"
           aria-label="Last name"
           className="form-control"
-          placeholder="100"
+          placeholder={init_center_dep}
+          value={init_center_dep}
+          onChange={(event) => {
+            setInit_center_dep(Number.parseInt(event.target.value));
+          }}
         ></input>
       </div>
 
@@ -82,7 +150,11 @@ function SetConfigurationPlan() {
           type="number"
           aria-label="First name"
           className="form-control"
-          placeholder="30"
+          placeholder={plan_rev_min}
+          value={plan_rev_min}
+          onChange={(event) => {
+            setPlan_rev_min(Number.parseInt(event.target.value));
+          }}
         ></input>
       </div>
       <div className="input-group">
@@ -91,7 +163,11 @@ function SetConfigurationPlan() {
           type="number"
           aria-label="Last name"
           className="form-control"
-          placeholder="0"
+          placeholder={plan_rev_sec}
+          value={plan_rev_sec}
+          onChange={(event) => {
+            setPlan_rev_sec(Number.parseInt(event.target.value));
+          }}
         ></input>
       </div>
       <div className="input-group">
@@ -100,7 +176,11 @@ function SetConfigurationPlan() {
           type="number"
           aria-label="Last name"
           className="form-control"
-          placeholder="100"
+          placeholder={rev_cost}
+          value={rev_cost}
+          onChange={(event) => {
+            setRev_cost(Number.parseInt(event.target.value));
+          }}
         ></input>
       </div>
 
@@ -110,7 +190,11 @@ function SetConfigurationPlan() {
           type="number"
           aria-label="First name"
           className="form-control"
-          placeholder="1000000"
+          placeholder={max_dep}
+          value={max_dep}
+          onChange={(event) => {
+            setMax_dep(Number.parseInt(event.target.value));
+          }}
         ></input>
       </div>
       <div className="input-group">
@@ -119,7 +203,11 @@ function SetConfigurationPlan() {
           type="number"
           aria-label="Last name"
           className="form-control"
-          placeholder="5"
+          placeholder={interest_pct}
+          value={interest_pct}
+          onChange={(event) => {
+            setInterest_pct(Number.parseInt(event.target.value));
+          }}
         ></input>
       </div>
 
@@ -132,7 +220,7 @@ function SetConfigurationPlan() {
         <button className="btn btn-info my-3">check</button>
       </li>
       <li className="d-grid gap-2 col-1 ">
-        <button className="btn btn-primary">
+        <button className="btn btn-primary" onClick={onNext}>
           <Link href="/game_setup/SetConstructionPlanPlayer1">Next</Link>
         </button>
       </li>
