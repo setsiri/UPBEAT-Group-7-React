@@ -9,6 +9,7 @@ function UpdateConstructionPlan() {
   const [curPlan, setCurPlan] = useState("done");
   const [newPlan, setNewPlan] = useState("done \ndone \ndone");
   const [curPlayer, setCurPlayer] = useState(1);
+  const [isCorrectSyntax, setIsCorrectSyntax] = useState(false);
 
   useEffect(() => {
     if (!client) {
@@ -17,11 +18,14 @@ function UpdateConstructionPlan() {
         onConnect: () => {
           client.subscribe("/game/get/data", (message) => {
             const body = JSON.parse(message.body);
+            setCurPlayer(body["index"]);
+            setCurPlan(body["configurationPlan"]);
             console.log(body);
           });
 
           client.subscribe("/game/get/checkSyntax", (message) => {
             const body = JSON.parse(message.body);
+            setIsCorrectSyntax(body);
             console.log(body);
           });
 
@@ -83,6 +87,7 @@ function UpdateConstructionPlan() {
           value={newPlan}
           onChange={(event) => {
             setNewPlan(event.target.value);
+            setIsCorrectSyntax(false);
           }}
         ></textarea>
       </div>
@@ -98,7 +103,11 @@ function UpdateConstructionPlan() {
         </button>
       </li>
       <div className="mx-0">
-        <button className="btn btn-primary" onClick={onChange}>
+        <button
+          className="btn btn-primary"
+          onClick={onChange}
+          disabled={!isCorrectSyntax}
+        >
           <Link href="/game_play/CurrentConstructionPlan">
             finished changing
           </Link>

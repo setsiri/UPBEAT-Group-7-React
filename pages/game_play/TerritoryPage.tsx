@@ -7,6 +7,10 @@ let client: Client;
 
 function TerritoryPage() {
   const [curPlayer, setCurPlayer] = useState(1);
+  const [status, setStatus] = useState("normal");
+  const [action, setAction] = useState();
+  const [players, setPlayers] = useState([]);
+  const [territory, setTerritory] = useState([[]]);
 
   useEffect(() => {
     if (!client) {
@@ -15,6 +19,10 @@ function TerritoryPage() {
         onConnect: () => {
           client.subscribe("/game/display", (message) => {
             const body = JSON.parse(message.body);
+            setStatus(body["status"]);
+            setAction(body["action"]);
+            setPlayers(body["players"]);
+            setTerritory(body["territory"]);
             console.log(body);
           });
           client.activate();

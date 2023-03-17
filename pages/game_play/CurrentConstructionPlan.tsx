@@ -16,6 +16,8 @@ function CurrentConstructionPlan() {
         onConnect: () => {
           client.subscribe("/game/get/data", (message) => {
             const body = JSON.parse(message.body);
+            setCurPlayer(body["index"]);
+            setCurPlan(body["configurationPlan"]);
             console.log(body);
           });
 
