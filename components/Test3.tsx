@@ -48,7 +48,7 @@ function Test3() {
   };
 
   grid(10, 10);
-  console.log(hexagons);
+  /** console.log(hexagons); */
 
   return (
     <div className="App">

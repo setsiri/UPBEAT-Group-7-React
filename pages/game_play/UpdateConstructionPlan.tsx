@@ -13,7 +13,7 @@ function UpdateConstructionPlan() {
 
   useEffect(() => {
     if (!client) {
-      setIsCorrectSyntax(true);
+      setIsCorrectSyntax(false);
       client = new Client({
         brokerURL: "ws://localhost:8080/demo-websocket",
         onConnect: () => {
@@ -21,6 +21,7 @@ function UpdateConstructionPlan() {
             const body = JSON.parse(message.body);
             setCurPlayer(body["index"]);
             setCurPlan(body["configurationPlan"]);
+            setNewPlan(body["configurationPlan"]);
             console.log(body);
           });
 
@@ -35,15 +36,23 @@ function UpdateConstructionPlan() {
             console.log(body);
           });
 
-          client.activate();
-
-          client.publish({
-            destination: "/player/want/data",
-          });
+          wantData();
         },
       });
+      client.activate();
     }
   }, []);
+
+  const wantData = () => {
+    if (client) {
+      if (client.connected) {
+        console.log("wantData");
+        client.publish({
+          destination: "/player/want/data",
+        });
+      }
+    }
+  };
 
   const onCheck = () => {
     if (client) {
@@ -75,12 +84,17 @@ function UpdateConstructionPlan() {
     <div className="d-grid gap-2 col-1 mx-5  text-black">
       <h2 className="my-2">Update Construction Plan Of Player {curPlayer}</h2>
 
-      <h5>contructionplan editor</h5>
+      <h5>Current Contruction Plan</h5>
       <div>
-        <textarea rows={22} cols={100} value={curPlan}></textarea>
+        <textarea
+          rows={22}
+          cols={100}
+          value={curPlan}
+          onChange={() => {}}
+        ></textarea>
       </div>
 
-      <h5>contructionplan editor</h5>
+      <h5>New Contruction Plan</h5>
       <div>
         <textarea
           rows={22}

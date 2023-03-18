@@ -6,7 +6,7 @@ import { Client } from "@stomp/stompjs";
 let client: Client;
 
 function TerritoryPage() {
-  const [curPlayer, setCurPlayer] = useState(1);
+  const [curPlayer, setCurPlayer] = useState(null);
   const [status, setStatus] = useState("normal");
   const [action, setAction] = useState();
   const [players, setPlayers] = useState([]);
@@ -26,9 +26,11 @@ function TerritoryPage() {
             setTerritory(body["territory"]);
             console.log(body);
           });
-          client.activate();
+
+          nextAction();
         },
       });
+      client.activate();
     }
   }, []);
 
@@ -63,7 +65,7 @@ function TerritoryPage() {
       </div>
 
       <h2 className="d-grid gap-2 mx-5 my-2  text-black">
-        Territory : Player {curPlayer}
+        Territory : Player {curPlayer + 1}
       </h2>
       <Test3></Test3>
     </div>

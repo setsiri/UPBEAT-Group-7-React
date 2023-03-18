@@ -15,21 +15,33 @@ function CurrentConstructionPlan() {
         brokerURL: "ws://localhost:8080/demo-websocket",
         onConnect: () => {
           client.subscribe("/game/get/data", (message) => {
+            console.log("get message");
             const body = JSON.parse(message.body);
+            console.log(body);
             setCurPlayer(body["index"]);
             setCurPlan(body["configurationPlan"]);
-            console.log(body);
           });
-
-          client.activate();
-
-          client.publish({
-            destination: "/player/want/data",
-          });
+          console.log("sub");
+          wantData();
         },
       });
+      console.log("activate");
+      client.activate();
     }
   }, []);
+
+  const wantData = () => {
+    if (client) {
+      if (client.connected) {
+        console.log("wantData");
+        client.publish({
+          destination: "/player/want/data",
+        });
+      }
+    }
+  };
+
+  console.log("send message");
 
   return (
     <div className="d-grid gap-2 col-1 mx-5  text-black">
@@ -41,7 +53,12 @@ function CurrentConstructionPlan() {
 
       <h2>CurrentConstruction Plan Of Player {curPlayer}</h2>
       <div>
-        <textarea rows={22} cols={100} value={curPlan}></textarea>
+        <textarea
+          rows={22}
+          cols={100}
+          value={curPlan}
+          onChange={() => {}}
+        ></textarea>
       </div>
 
       <li className="d-flex gap-2">
