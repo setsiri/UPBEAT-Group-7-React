@@ -19,6 +19,7 @@ function TerritoryPage() {
         onConnect: () => {
           client.subscribe("/game/display", (message) => {
             const body = JSON.parse(message.body);
+            setCurPlayer(body["index"]);
             setStatus(body["status"]);
             setAction(body["action"]);
             setPlayers(body["players"]);
@@ -64,13 +65,6 @@ function TerritoryPage() {
       <h2 className="d-grid gap-2 mx-5 my-2  text-black">
         Territory : Player {curPlayer}
       </h2>
-      <li className="d-flex gap-2  mx-5 my-3">
-        <button className="btn btn-primary">
-          <Link href="/game_play/CurrentConstructionPlan">
-            CurrentConstructionPlan
-          </Link>
-        </button>
-      </li>
       <Test3></Test3>
     </div>
   );

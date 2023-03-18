@@ -13,6 +13,7 @@ function UpdateConstructionPlan() {
 
   useEffect(() => {
     if (!client) {
+      setIsCorrectSyntax(true);
       client = new Client({
         brokerURL: "ws://localhost:8080/demo-websocket",
         onConnect: () => {

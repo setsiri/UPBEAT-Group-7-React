@@ -12,7 +12,7 @@ function SetConstructionPlanPlayer1() {
   const [isCorrectSyntax, setIsCorrectSyntax] = useState(false);
 
   useEffect(() => {
-    setIsCorrectSyntax(false);
+    setIsCorrectSyntax(true);
     if (!client) {
       client = new Client({
         brokerURL: "ws://localhost:8080/demo-websocket",

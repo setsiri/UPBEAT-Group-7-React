@@ -12,7 +12,7 @@ function SetConstructionPlanPlayer2() {
   const [isCorrectSyntax, setIsCorrectSyntax] = useState(false);
 
   useEffect(() => {
-    setIsCorrectSyntax(false);
+    setIsCorrectSyntax(true);
     if (!client) {
       client = new Client({
         brokerURL: "ws://localhost:8080/demo-websocket",
@@ -103,7 +103,7 @@ function SetConstructionPlanPlayer2() {
             className="btn btn-primary"
             disabled={!isCorrectSyntax}
           >
-            <Link href="/game_play/TerritoryPage" onClick={onStart}>
+            <Link href="/game_play/CurrentConstructionPlan" onClick={onStart}>
               Start
             </Link>
           </button>

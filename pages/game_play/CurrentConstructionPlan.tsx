@@ -40,20 +40,19 @@ function CurrentConstructionPlan() {
       </div>
 
       <h2>CurrentConstruction Plan Of Player {curPlayer}</h2>
-      <li className="d-grid gap-2 col-1 ">
-        <button className="btn btn-primary">
-          <Link href="/game_play/TerritoryPage">TerritoryPage</Link>
-        </button>
-      </li>
       <div>
         <textarea rows={22} cols={100} value={curPlan}></textarea>
       </div>
 
-      <li className="d-grid gap-2 col-1">
+      <li className="d-flex gap-2">
         <button className="btn btn-primary">
           <Link href="/game_play/UpdateConstructionPlan">
             UpdateConstructionPlan
           </Link>
+        </button>
+
+        <button type="button" className="btn btn-primary">
+          <Link href="/game_play/TerritoryPage">Start</Link>
         </button>
       </li>
     </div>
