@@ -9,7 +9,8 @@ import {
   HexUtils,
 } from "../grid";
 
-function Test3() {
+function Test3(props: any) {
+  /* console.log(props.territory); */
   const hexagons: Hex[] = [];
   const hexagonSize = { x: 7, y: 7 };
 

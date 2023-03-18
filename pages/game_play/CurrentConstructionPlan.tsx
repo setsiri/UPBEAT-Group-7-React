@@ -2,12 +2,17 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import { Client } from "@stomp/stompjs";
+import { useDelay } from "react-use-precision-timer";
 
 let client: Client;
 
 function CurrentConstructionPlan() {
   const [curPlan, setCurPlan] = useState("done");
   const [curPlayer, setCurPlayer] = useState(1);
+
+  const onceTimer = useDelay(100, () => {
+    wantData();
+  });
 
   useEffect(() => {
     if (!client) {
@@ -22,7 +27,7 @@ function CurrentConstructionPlan() {
             setCurPlan(body["configurationPlan"]);
           });
           console.log("sub");
-          wantData();
+          onceTimer.start();
         },
       });
       console.log("activate");

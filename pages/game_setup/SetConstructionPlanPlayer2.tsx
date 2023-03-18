@@ -2,6 +2,7 @@ import Link from "next/link";
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { Client } from "@stomp/stompjs";
+import { useDelay } from "react-use-precision-timer";
 
 let client: Client;
 
@@ -42,6 +43,12 @@ function SetConstructionPlanPlayer2() {
     }
   };
 
+  const onceTimer = useDelay(100, () => {
+    client.publish({
+      destination: "/player/start",
+    });
+  });
+
   const onStart = () => {
     if (client) {
       if (client.connected) {
@@ -52,10 +59,7 @@ function SetConstructionPlanPlayer2() {
             configurationPlan: plan2,
           }),
         });
-
-        client.publish({
-          destination: "/player/start",
-        });
+        onceTimer.start();
       }
     }
   };

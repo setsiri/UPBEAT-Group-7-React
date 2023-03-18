@@ -2,13 +2,18 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Test3 from "@/components/Test3";
 import { Client } from "@stomp/stompjs";
+import Action from "@/dataTypes/Action";
+import region from "@/dataTypes/territory";
+import player from "@/dataTypes/player";
+import StatusDisplay from "@/components/StatusDisplsy";
 
 let client: Client;
+let body: any;
 
 function TerritoryPage() {
   const [curPlayer, setCurPlayer] = useState(null);
-  const [status, setStatus] = useState("normal");
-  const [action, setAction] = useState();
+  const [status, setStatus] = useState("");
+  const [action, setAction] = useState(null);
   const [players, setPlayers] = useState([]);
   const [territory, setTerritory] = useState([[]]);
 
@@ -18,16 +23,52 @@ function TerritoryPage() {
         brokerURL: "ws://localhost:8080/demo-websocket",
         onConnect: () => {
           client.subscribe("/game/display", (message) => {
-            const body = JSON.parse(message.body);
+            body = JSON.parse(message.body);
+            console.log(body);
             setCurPlayer(body["index"]);
             setStatus(body["status"]);
-            setAction(body["action"]);
-            setPlayers(body["players"]);
-            setTerritory(body["territory"]);
-            console.log(body);
-          });
 
-          nextAction();
+            setAction(
+              new Action(
+                body["action"]["action"],
+                body["action"]["direction"],
+                body["action"]["value"]
+              )
+            );
+
+            let result1 = [];
+            body["players"].map((p: any, i: number) => {
+              result1[i] = new player(
+                p["playerIndex"],
+                p["budget"],
+                [p["cityCenterPosM"], p["cityCenterPosN"]],
+                [p["crew"]["posM"], p["crew"]["posN"]],
+                p["status"]
+              );
+            });
+            setPlayers(result1);
+            /* console.log(players); */
+
+            let result = [[]];
+            body["territory"].map((row: any, i: number) => {
+              let resultRow = [];
+              row.map((col: any, j: number) => {
+                if (col !== null) {
+                  resultRow[j] = new region(
+                    col["deposit"],
+                    col["playerOwnerIndex"],
+                    col["type"]
+                  );
+                } else {
+                  resultRow[j] = null;
+                }
+                /* console.log(i * 10 + j); */
+              });
+              result[i] = resultRow;
+            });
+            setTerritory(result);
+            /* console.log(territory); */
+          });
         },
       });
       client.activate();
@@ -62,12 +103,24 @@ function TerritoryPage() {
             <Link href="/">back to homepage</Link>
           </button>
         </div>
+        <div className="  my-3 text-black" onClick={nextAction}>
+          <button className="btn btn-danger my-3">next action</button>
+        </div>
+        <div className="  my-3 text-black" onClick={nextTurn}>
+          <button className="btn btn-danger my-3">next turn</button>
+        </div>
       </div>
 
       <h2 className="d-grid gap-2 mx-5 my-2  text-black">
         Territory : Player {curPlayer + 1}
       </h2>
-      <Test3></Test3>
+      <StatusDisplay
+        curPlayer={curPlayer}
+        status={status}
+        action={action}
+        players={players}
+      ></StatusDisplay>
+      <Test3 territory={territory} players={players}></Test3>
     </div>
   );
 }
