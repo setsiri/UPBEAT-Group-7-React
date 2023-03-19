@@ -3,6 +3,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { Client } from "@stomp/stompjs";
 import { useDelay } from "react-use-precision-timer";
+import Editor, { Monaco } from "@monaco-editor/react";
 
 let client: Client;
 
@@ -48,16 +49,24 @@ function CurrentConstructionPlan() {
 
   console.log("send message");
 
+  //ของ code editor
+  function handleEditorChange(curPlan: any, event: any) {
+    setCurPlan(curPlan);
+    console.log("here is the current curPlan:", curPlan);
+    // setIsCorrectSyntax(false);
+  }
+
   return (
-    <div className="d-grid gap-2 col-1 mx-5  text-black">
-      <div className="  my-3 text-black">
+    <div> 
+       <div className="  my-4 text-center">
         <button className="btn btn-secondary my-3">
           <Link href="/">back to homepage</Link>
         </button>
+        <h2 className="text-black my-3">CurrentConstruction Plan Of Player {curPlayer}</h2>
       </div>
 
-      <h2>CurrentConstruction Plan Of Player {curPlayer}</h2>
-      <div>
+     {/* 
+       <div>
         <textarea
           rows={22}
           cols={100}
@@ -65,8 +74,22 @@ function CurrentConstructionPlan() {
           onChange={() => {}}
         ></textarea>
       </div>
+     */}
+     
+     <div  style={{display: 'flex', justifyContent: 'center'}} className="my-3">
+      <Editor
+        height="50vh"
+        width="90vh"
+        language="java"
+        defaultValue={curPlan}
+        onChange={handleEditorChange}
+      />
+    </div>
 
-      <li className="d-flex gap-2">
+      
+    
+
+      <div className="d-grid gap-2 d-md-flex justify-content-md-center my-3">
         <button className="btn btn-primary">
           <Link href="/game_play/UpdateConstructionPlan">
             UpdateConstructionPlan
@@ -76,8 +99,10 @@ function CurrentConstructionPlan() {
         <button type="button" className="btn btn-primary">
           <Link href="/game_play/TerritoryPage">Start</Link>
         </button>
-      </li>
-    </div>
+      </div>
+    
+  </div>
+   
   );
 }
 

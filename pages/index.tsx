@@ -8,6 +8,8 @@ import React, { useRef } from "react";
 import mypic2 from "../public/logo.png"
 import Image from "next/image";
 
+
+
 export default function Home() {
 
  
@@ -35,9 +37,8 @@ export default function Home() {
           <Link href="/game_setup/SetConfigurationPlan">start game</Link>
         </button>
       </div>
-
-     
       
+  
     </div>
   );
 }

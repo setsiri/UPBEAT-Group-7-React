@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import { Client } from "@stomp/stompjs";
+import Editor, { Monaco } from "@monaco-editor/react";
+import DiffEditor from "@monaco-editor/react";
 
 let client: Client;
 
@@ -80,12 +82,35 @@ function UpdateConstructionPlan() {
     }
   };
 
-  return (
-    <div className="d-grid gap-2 col-1 mx-5  text-black">
-      <h2 className="my-2">Update Construction Plan Of Player {curPlayer}</h2>
+  //ของ code editor
+  function handleEditorChange(newPlan: any, event: any) {
+    setNewPlan(newPlan);
+    console.log("here is the current newPlan:", newPlan);
+    // setIsCorrectSyntax(false);
+  }
 
-      <h5>Current Contruction Plan</h5>
-      <div>
+  return (
+    <div> 
+       <h2 className="my-5 text-center text-black">Update Construction Plan Of Player {curPlayer}</h2>
+
+<div className="text-black d-flex gap-4 "  style={{display: 'flex', justifyContent: 'center'}}>
+  <div>
+  <h5 className="mx-5">Current Contruction Plan "read only" </h5>
+      <div  style={{display: 'flex', justifyContent: 'center'}} className="my-1">
+        
+      <Editor
+        height="50vh"
+        width="70vh"
+        language="java"
+        value={curPlan}
+        options={{readOnly: true}}
+        
+      />
+      </div>
+    </div>
+      
+
+      {/* <div>
         <textarea
           rows={22}
           cols={100}
@@ -93,9 +118,28 @@ function UpdateConstructionPlan() {
           onChange={() => {}}
         ></textarea>
       </div>
-
-      <h5>New Contruction Plan</h5>
+      */}
+      
       <div>
+        <h5 className="mx-5">New Contruction Plan</h5>
+      <div  style={{display: 'flex', justifyContent: 'center'}} className="my-1">
+      <Editor
+        height="50vh"
+        width="70vh"
+        language="java"
+        value={newPlan}
+        onChange={handleEditorChange}
+      />
+    </div>
+    </div></div>
+
+
+      
+     
+
+      
+
+{/*  <div>
         <textarea
           rows={22}
           cols={100}
@@ -105,19 +149,22 @@ function UpdateConstructionPlan() {
             setIsCorrectSyntax(false);
           }}
         ></textarea>
-      </div>
+      </div> */}
+
+    <div className="text-center my-3 text-black">
 
       <h5>
         state : computing...<i className="bi bi-hourglass-split"></i> / compute
         finished <i className="bi bi-check-circle-fill"></i> / syntax error
         please check again <i className="bi bi-emoji-frown-fill"></i>
       </h5>
-      <li className="d-grid gap-2 col-1 ">
+
+      <div className="text-center">
         <button className="btn btn-info my-3" onClick={onCheck}>
           check
         </button>
-      </li>
-      <div className="mx-0">
+      </div>
+      <div className="text-center">
         <button
           className="btn btn-primary"
           onClick={onChange}
@@ -128,7 +175,8 @@ function UpdateConstructionPlan() {
           </Link>
         </button>
       </div>
-    </div>
+    </div></div>
+   
   );
 }
 
