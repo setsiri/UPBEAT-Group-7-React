@@ -18,7 +18,11 @@ function HowtoPlay() {
           integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
           crossOrigin="anonymous"
         ></script>
-      </Head><div className=" mx-5 my-3 text-black">
+      </Head>
+      
+     
+      
+      <div className=" mx-5 my-3 text-black position-relative ">
     
       <div className="text-center">
         <button className="btn btn-secondary">

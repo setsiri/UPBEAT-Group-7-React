@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import { Client } from "@stomp/stompjs";
+import bg from "../../public/bg1.gif"
+import Image from "next/image";
+import Bganimation from "../../public/bganimation"
 
 let client: Client;
 
@@ -52,13 +55,22 @@ function SetConfigurationPlan() {
   };
 
   return (
-    <div><div className="text-center my-4">
+    <div>
+        <div
+       className=" position-fill "
+      >
+       <Bganimation/>
+      </div>
+       <div className="position-relative">
+  
+      
+      <div className="text-center my-4">
     <button className="btn btn-secondary">
       <Link href="/">back to homepage</Link>
     </button>
    
   </div>
-  <h2 className="text-center text-black my-4">SetConfigurationPlan</h2>
+  <h2 className="text-center text-black my-4">Setup ConfigurationPlan</h2>
   <div className="d-grid gap-2 col-3 mx-auto" >  <div className="input-group">
         <span className="input-group-text">M & N</span>
         <input
@@ -231,6 +243,8 @@ function SetConfigurationPlan() {
           <Link href="/game_setup/SetConstructionPlanPlayer1">Next</Link>
         </button>
       </div></div>
+    </div>
+   
     
   );
 }

@@ -3,7 +3,9 @@ import Link from "next/link";
 import Head from "next/head";
 import { Client } from "@stomp/stompjs";
 import Editor, { Monaco } from "@monaco-editor/react";
+import Bganimation from "../../public/bganimation"
 import  { useRef } from "react";
+import style from "styled-jsx/style";
 
 
 
@@ -69,12 +71,18 @@ function SetConstructionPlanPlayer1() {
 
   return (
     <div>
+      <div
+       className=" position-fill "
+      >
+       <Bganimation/>
+      </div>
+      <div className=" position-relative">
       
   <div className="text-center my-4">
     <button className="btn btn-secondary">
       <Link href="/">back to homepage</Link>
     </button>
-    <h2 className="text-black my-3">SetConstructionPlanPlayer1</h2>
+    <h2 className="text-black my-3">Setup ConstructionPlan : Player1</h2>
   </div>
   <div className="text-center"> 
 
@@ -95,13 +103,15 @@ function SetConstructionPlanPlayer1() {
 */}  
 
       <div  style={{display: 'flex', justifyContent: 'center'}} className="my-3">
-      <Editor
+        <div style={{border: '6px outset '}}>
+          <div style={{border: '3px inset '}}><Editor
         height="50vh"
         width="90vh"
         language="java"
         defaultValue={plan1}
         onChange={handleEditorChange}
-      />
+      /></div></div>
+      
     </div>
     
       
@@ -135,7 +145,8 @@ function SetConstructionPlanPlayer1() {
         </div>
      
   
- </div>
+ </div></div>
+    
     
   );
 }

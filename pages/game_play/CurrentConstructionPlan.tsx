@@ -4,6 +4,7 @@ import Head from "next/head";
 import { Client } from "@stomp/stompjs";
 import { useDelay } from "react-use-precision-timer";
 import Editor, { Monaco } from "@monaco-editor/react";
+import Bganimation from "../../public/bganimation"
 
 let client: Client;
 
@@ -57,12 +58,18 @@ function CurrentConstructionPlan() {
   }
 
   return (
-    <div> 
+<div> 
+<div
+       className=" position-fill "
+      >
+       <Bganimation/>
+      </div>
+   <div className=" position-relative"> 
        <div className="  my-4 text-center">
         <button className="btn btn-secondary my-3">
           <Link href="/">back to homepage</Link>
         </button>
-        <h2 className="text-black my-3">CurrentConstruction Plan Of Player {curPlayer}</h2>
+        <h2 className="text-black my-3">Current ConstructionPlan : Player {curPlayer}</h2>
       </div>
 
      {/* 
@@ -77,13 +84,14 @@ function CurrentConstructionPlan() {
      */}
      
      <div  style={{display: 'flex', justifyContent: 'center'}} className="my-3">
-      <Editor
+     <div style={{border: '6px outset '}}>
+          <div style={{border: '3px inset '}}><Editor
         height="50vh"
         width="90vh"
         language="java"
         defaultValue={curPlan}
         onChange={handleEditorChange}
-      />
+      /></div></div>
     </div>
 
       
@@ -101,7 +109,11 @@ function CurrentConstructionPlan() {
         </button>
       </div>
     
-  </div>
+  </div></div>
+
+
+
+  
    
   );
 }

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Client } from "@stomp/stompjs";
 import { useDelay } from "react-use-precision-timer";
 import Editor, { Monaco } from "@monaco-editor/react";
+import Bganimation from "../../public/bganimation"
 
 let client: Client;
 
@@ -73,13 +74,19 @@ function SetConstructionPlanPlayer2() {
   }
 
   return (
-    <div>
+<div>
+<div
+       className=" position-fill "
+      >
+       <Bganimation/>
+      </div>
+  <div className="position-relative">
       
       <div className="text-center my-4">
     <button className="btn btn-secondary">
       <Link href="/">back to homepage</Link>
     </button>
-    <h2 className="text-black my-3">SetConstructionPlanPlayer2</h2>
+    <h2 className="text-black my-3">Setup ConstructionPlan : Player2</h2>
   </div>
 
       <div className="text-center">
@@ -101,13 +108,14 @@ function SetConstructionPlanPlayer2() {
 */}  
      
      <div  style={{display: 'flex', justifyContent: 'center'}} className="my-3">
-      <Editor
+     <div style={{border: '6px outset '}}>
+          <div style={{border: '3px inset '}}><Editor
         height="50vh"
         width="90vh"
         language="java"
         defaultValue={plan2}
         onChange={handleEditorChange}
-      />
+      /></div></div>
     </div>
 
       <h5 className="text-black my-4">
@@ -140,7 +148,10 @@ function SetConstructionPlanPlayer2() {
           </button>
         </div>
       
-    </div>
+    </div></div>
+
+
+    
     
   );
 }

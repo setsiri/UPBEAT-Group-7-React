@@ -4,6 +4,7 @@ import Head from "next/head";
 import { Client } from "@stomp/stompjs";
 import Editor, { Monaco } from "@monaco-editor/react";
 import DiffEditor from "@monaco-editor/react";
+import Bganimation from "../../public/bganimation"
 
 let client: Client;
 
@@ -90,22 +91,30 @@ function UpdateConstructionPlan() {
   }
 
   return (
-    <div> 
-       <h2 className="my-5 text-center text-black">Update Construction Plan Of Player {curPlayer}</h2>
+<div> 
+<div
+       className=" position-fill "
+      >
+       <Bganimation/>
+      </div>
+  
+  <div className=" position-relative"> 
+       <h2 className="my-5 text-center text-black">Update ConstructionPlan : Player {curPlayer}</h2>
 
 <div className="text-black d-flex gap-4 "  style={{display: 'flex', justifyContent: 'center'}}>
   <div>
-  <h5 className="mx-5">Current Contruction Plan "read only" </h5>
+  <h5 className="mx-5">Current ContructionPlan "Read only" </h5>
       <div  style={{display: 'flex', justifyContent: 'center'}} className="my-1">
         
-      <Editor
+      <div style={{border: '6px outset '}}>
+          <div style={{border: '3px inset '}}> <Editor
         height="50vh"
         width="70vh"
         language="java"
         value={curPlan}
         options={{readOnly: true}}
         
-      />
+      /></div></div>
       </div>
     </div>
       
@@ -121,15 +130,16 @@ function UpdateConstructionPlan() {
       */}
       
       <div>
-        <h5 className="mx-5">New Contruction Plan</h5>
+        <h5 className="mx-5">New ContructionPlan "Editor"</h5>
       <div  style={{display: 'flex', justifyContent: 'center'}} className="my-1">
-      <Editor
+      <div style={{border: '6px outset '}}>
+          <div style={{border: '3px inset '}}><Editor
         height="50vh"
         width="70vh"
         language="java"
         value={newPlan}
         onChange={handleEditorChange}
-      />
+      /></div></div>
     </div>
     </div></div>
 
@@ -175,7 +185,11 @@ function UpdateConstructionPlan() {
           </Link>
         </button>
       </div>
-    </div></div>
+    </div></div></div>
+
+
+
+   
    
   );
 }
