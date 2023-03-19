@@ -52,16 +52,14 @@ function SetConfigurationPlan() {
   };
 
   return (
-    <div className="d-grid gap-2 col-1 mx-5  text-black">
-      <div className="  my-3 text-black">
-        <button className="btn btn-secondary my-3">
-          <Link href="/">back to homepage</Link>
-        </button>
-      </div>
-
-      <h2>SetConfigurationPlan</h2>
-
-      <div className="input-group">
+    <div><div className="text-center my-4">
+    <button className="btn btn-secondary">
+      <Link href="/">back to homepage</Link>
+    </button>
+   
+  </div>
+  <h2 className="text-center text-black my-4">SetConfigurationPlan</h2>
+  <div className="d-grid gap-2 col-3 mx-auto" >  <div className="input-group">
         <span className="input-group-text">M & N</span>
         <input
           type="number"
@@ -209,22 +207,31 @@ function SetConfigurationPlan() {
             setInterest_pct(Number.parseInt(event.target.value));
           }}
         ></input>
-      </div>
-
-      <h5>
+      </div><h5 className="text-black">
         state : computing...<i className="bi bi-hourglass-split"></i> / compute
         finished <i className="bi bi-check-circle-fill"></i> / syntax error
         please check again <i className="bi bi-emoji-frown-fill"></i>
-      </h5>
-      <li className="d-grid gap-2 col-1 ">
-        <button className="btn btn-info my-3">check</button>
-      </li>
-      <li className="d-grid gap-2 col-1 ">
-        <button className="btn btn-primary" onClick={onNext}>
+      </h5> </div>
+
+  
+  <div className="d-grid gap-2 col-1 mx-5 text-black">
+
+
+      
+
+  
+
+     
+     
+    </div> <div className=" text-center">
+        <button className="btn btn-info my-3 text-center">check</button>
+      </div>
+      <div className="text-center">
+        <button className="btn btn-primary text-center" onClick={onNext}>
           <Link href="/game_setup/SetConstructionPlanPlayer1">Next</Link>
         </button>
-      </li>
-    </div>
+      </div></div>
+    
   );
 }
 

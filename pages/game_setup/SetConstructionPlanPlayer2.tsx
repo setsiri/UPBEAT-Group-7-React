@@ -3,6 +3,7 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { Client } from "@stomp/stompjs";
 import { useDelay } from "react-use-precision-timer";
+import Editor, { Monaco } from "@monaco-editor/react";
 
 let client: Client;
 
@@ -64,15 +65,27 @@ function SetConstructionPlanPlayer2() {
     }
   };
 
-  return (
-    <div className="d-grid gap-2 col-1 mx-5  text-black">
-      <div className="  my-3 text-black">
-        <button className="btn btn-secondary my-3">
-          <Link href="/">back to homepage</Link>
-        </button>
-      </div>
+  //ของ code editor
+  function handleEditorChange(plan2: any, event: any) {
+    setPlan2(plan2);
+    console.log("here is the current plan2:", plan2);
+    // setIsCorrectSyntax(false);
+  }
 
-      <h2>SetConstructionPlanPlayer2</h2>
+  return (
+    <div>
+      
+      <div className="text-center my-4">
+    <button className="btn btn-secondary">
+      <Link href="/">back to homepage</Link>
+    </button>
+    <h2 className="text-black my-3">SetConstructionPlanPlayer2</h2>
+  </div>
+
+      <div className="text-center">
+      
+{/* 
+  
       <div>
         <textarea
           rows={25}
@@ -85,21 +98,35 @@ function SetConstructionPlanPlayer2() {
         ></textarea>
       </div>
 
-      <h5>
+*/}  
+     
+     <div  style={{display: 'flex', justifyContent: 'center'}} className="my-3">
+      <Editor
+        height="50vh"
+        width="90vh"
+        language="java"
+        defaultValue={plan2}
+        onChange={handleEditorChange}
+      />
+    </div>
+
+      <h5 className="text-black my-4">
         state : computing...<i className="bi bi-hourglass-split"></i> / compute
         finished <i className="bi bi-check-circle-fill"></i> / syntax error
         please check again <i className="bi bi-emoji-frown-fill"></i>
       </h5>
-      <li className="d-grid gap-2 col-1 ">
+      </div>
+
+      <div className="text-center">
         <button className="btn btn-info my-3" onClick={onCheck}>
           check
         </button>
-      </li>
-
-      <div className="d-grid gap-2 col-1 ">
-        <div className="d-flex gap-2" role="group" aria-label="Basic example">
+      </div>
+ 
+      
+        <div className="d-grid gap-2 d-md-flex justify-content-md-center" role="group" aria-label="Basic example">
           <button type="button" className="btn btn-primary">
-            <Link href="/game_setup/SetConfigurationPlan">Back</Link>
+            <Link href="/game_setup/SetConstructionPlanPlayer1">Back</Link>
           </button>
 
           <button
@@ -112,8 +139,9 @@ function SetConstructionPlanPlayer2() {
             </Link>
           </button>
         </div>
-      </div>
+      
     </div>
+    
   );
 }
 

@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import { Client } from "@stomp/stompjs";
+import Editor, { Monaco } from "@monaco-editor/react";
+import  { useRef } from "react";
+
+
 
 let client: Client;
 
@@ -56,17 +60,28 @@ function SetConstructionPlanPlayer1() {
     }
   };
 
+  //ของ code editor
+  function handleEditorChange(plan1: any, event: any) {
+    setPlan1(plan1);
+    console.log("here is the current plan1:", plan1);
+    // setIsCorrectSyntax(false);
+  }
+
   return (
-    <div className="d-grid gap-2 col-1 mx-5  text-black">
-      <div className="  my-3 text-black">
-        <button className="btn btn-secondary my-3">
-          <Link href="/">back to homepage</Link>
-        </button>
-      </div>
+    <div>
+      
+  <div className="text-center my-4">
+    <button className="btn btn-secondary">
+      <Link href="/">back to homepage</Link>
+    </button>
+    <h2 className="text-black my-3">SetConstructionPlanPlayer1</h2>
+  </div>
+  <div className="text-center"> 
 
-      <h2>SetConstructionPlanPlayer1</h2>
+     
 
-      <div>
+{/* 
+  <div>
         <textarea
           rows={25}
           cols={100}
@@ -76,19 +91,35 @@ function SetConstructionPlanPlayer1() {
             setIsCorrectSyntax(false);
           }}
         ></textarea>
-      </div>
-      <h5>
+      </div> 
+*/}  
+
+      <div  style={{display: 'flex', justifyContent: 'center'}} className="my-3">
+      <Editor
+        height="50vh"
+        width="90vh"
+        language="java"
+        defaultValue={plan1}
+        onChange={handleEditorChange}
+      />
+    </div>
+    
+      
+
+      <h5 className="text-black my-4">
         state : computing...<i className="bi bi-hourglass-split"></i> / compute
         finished <i className="bi bi-check-circle-fill"></i> / syntax error
         please check again <i className="bi bi-emoji-frown-fill"></i>
       </h5>
-      <li className="d-grid gap-2 col-1 ">
-        <button className="btn btn-info my-3" onClick={onCheck}>
+    </div>
+
+
+      <div className="text-center"> <button className="btn btn-info my-3" onClick={onCheck}>
           check
-        </button>
-      </li>
-      <div className="d-grid gap-2 col-1 ">
-        <div className="d-flex gap-2" role="group" aria-label="Basic example">
+        </button></div>
+        
+        
+        <div className="d-grid gap-2 d-md-flex justify-content-md-center" role="group" aria-label="Basic example">
           <button type="button" className="btn btn-primary">
             <Link href="/game_setup/SetConfigurationPlan">Back</Link>
           </button>
@@ -102,8 +133,10 @@ function SetConstructionPlanPlayer1() {
             <Link href="/game_setup/SetConstructionPlanPlayer2">Next</Link>
           </button>
         </div>
-      </div>
-    </div>
+     
+  
+ </div>
+    
   );
 }
 
