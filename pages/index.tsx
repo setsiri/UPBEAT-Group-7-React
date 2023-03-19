@@ -12,7 +12,7 @@ import Bganimation from "../public/bganimation";
 
 export default function Home() {
   return (
-    <>
+    <div >
 
 
       {" "}
@@ -55,6 +55,6 @@ export default function Home() {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }

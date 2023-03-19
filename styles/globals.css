@@ -88,9 +88,9 @@ body {
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
+    to left,
+    #8942a8,
+    #0fa352
     )
     rgb(var(--background-start-rgb));
 }
@@ -193,7 +193,7 @@ body{
     list-style: none;
     width: 20px;
     height: 20px;
-    background: rgba(228, 0, 0, 0.562);
+    background: rgba(255, 255, 255, 0.185);
     animation: animate 15s linear infinite;
     bottom: -150px;
     
