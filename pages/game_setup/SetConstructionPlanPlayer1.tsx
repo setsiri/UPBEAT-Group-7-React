@@ -7,6 +7,7 @@ import Bganimation from "../../public/bganimation"
 import  { useRef } from "react";
 import style from "styled-jsx/style";
 
+import CountDown from "../../components/CountDownTimer"
 
 
 let client: Client;
@@ -78,6 +79,9 @@ function SetConstructionPlanPlayer1() {
       </div>
       <div className=" position-relative">
       
+ 
+
+
   <div className="text-center my-4">
     <button className="btn btn-secondary">
       <Link href="/">back to homepage</Link>
@@ -113,14 +117,14 @@ function SetConstructionPlanPlayer1() {
       /></div></div>
       
     </div>
-    
-      
-
-      <h5 className="text-black my-4">
+     <CountDown seconds={5} />
+       <h5 className="text-black my-4">
         state : computing...<i className="bi bi-hourglass-split"></i> / compute
         finished <i className="bi bi-check-circle-fill"></i> / syntax error
-        please check again <i className="bi bi-emoji-frown-fill"></i>
-      </h5>
+        please check again <i className="bi bi-emoji-frown-fill"></i>  </h5>
+
+     
+    
     </div>
 
 

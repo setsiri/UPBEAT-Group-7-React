@@ -5,6 +5,7 @@ import { Client } from "@stomp/stompjs";
 import { useDelay } from "react-use-precision-timer";
 import Editor, { Monaco } from "@monaco-editor/react";
 import Bganimation from "../../public/bganimation"
+import CountDown from "../../components/CountDownTimer"
 
 let client: Client;
 
@@ -117,7 +118,7 @@ function SetConstructionPlanPlayer2() {
         onChange={handleEditorChange}
       /></div></div>
     </div>
-
+    <CountDown seconds={5} />
       <h5 className="text-black my-4">
         state : computing...<i className="bi bi-hourglass-split"></i> / compute
         finished <i className="bi bi-check-circle-fill"></i> / syntax error
