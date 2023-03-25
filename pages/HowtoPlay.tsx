@@ -3,10 +3,14 @@ import Link from "next/link";
 import Head from "next/head";
 import Image from "next/image";
 import mypic from "../public/webmap.png";
+import {motion, AnimatePresence} from "framer-motion"
 
 function HowtoPlay() {
   return (
-    <div>  <Head>
+    <AnimatePresence><motion.div  initial={{ y:100,x: 0,opacity: 0 , }}
+    animate={{y:0,x:0, opacity: 1, }}
+    exit={{ opacity: 0 }}
+    transition={{duration: 0.75,}}>  <Head>
         <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
           rel="stylesheet"
@@ -67,7 +71,7 @@ function HowtoPlay() {
       </p>
     </div>
    
-    </div>
+    </motion.div></AnimatePresence>
     
   );
 }

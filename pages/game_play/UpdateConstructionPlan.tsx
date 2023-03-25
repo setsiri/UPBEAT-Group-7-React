@@ -5,6 +5,7 @@ import { Client } from "@stomp/stompjs";
 import Editor, { Monaco } from "@monaco-editor/react";
 import DiffEditor from "@monaco-editor/react";
 import Bganimation from "../../public/bganimation"
+import {motion, AnimatePresence} from "framer-motion"
 
 let client: Client;
 
@@ -91,12 +92,15 @@ function UpdateConstructionPlan() {
   }
 
   return (
-<div> 
-<div
+<AnimatePresence><div
        className=" position-fill "
       >
        <Bganimation/>
-      </div>
+      </div><motion.div  initial={{ y:100,x: 0,opacity: 0 , }}
+    animate={{y:0,x:0, opacity: 1, }}
+    exit={{ opacity: 0 }}
+    transition={{duration: 0.75,}}> 
+
   
   <div className=" position-relative"> 
        <h2 className="my-5 text-center text-black">Update ConstructionPlan : Player {curPlayer}</h2>
@@ -185,7 +189,7 @@ function UpdateConstructionPlan() {
           </Link>
         </button>
       </div>
-    </div></div></div>
+    </div></div></motion.div></AnimatePresence>
 
 
 

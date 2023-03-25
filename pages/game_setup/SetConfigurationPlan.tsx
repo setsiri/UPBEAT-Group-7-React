@@ -5,6 +5,8 @@ import { Client } from "@stomp/stompjs";
 import bg from "../../public/bg1.gif"
 import Image from "next/image";
 import Bganimation from "../../public/bganimation"
+import {motion, AnimatePresence} from "framer-motion"
+import { useRouter } from "next/router";
 
 let client: Client;
 
@@ -55,12 +57,15 @@ function SetConfigurationPlan() {
   };
 
   return (
-    <div>
-        <div
+    <AnimatePresence>  <div
        className=" position-fill "
       >
        <Bganimation/>
-      </div>
+      </div> <motion.div  initial={{ y:50,x: 0,opacity: 0 , }}
+    animate={{y:0,x:0, opacity: 1, }}
+    exit={{ opacity: 0 }}
+    transition={{duration: 0.75,}}>
+      
        <div className="position-relative">
   
       
@@ -243,7 +248,8 @@ function SetConfigurationPlan() {
           <Link href="/game_setup/SetConstructionPlanPlayer1">Next</Link>
         </button>
       </div></div>
-    </div>
+    </motion.div></AnimatePresence>
+   
    
     
   );

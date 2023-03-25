@@ -2,13 +2,16 @@ import React from "react";
 import Link from "next/link";
 import Head from "next/head";
 import Bganimation from "../../public/bganimation";
+import {motion, AnimatePresence} from "framer-motion"
 
 function FinishPage() {
-  return (
-    <div>
-      <div className=" position-fill ">
+  return (<AnimatePresence> <div className=" position-fill ">
         <Bganimation />
-      </div>
+      </div><motion.div  initial={{ y:100,x: 0,opacity: 0 , }}
+    animate={{y:0,x:0, opacity: 1, }}
+    exit={{ opacity: 0 }}
+    transition={{duration: 0.75,}}>
+     
       <div className="position-relative p-5 ">
         <div className=" text-center my-5 text-black p-5 ">
           <h5>Result of the game</h5>
@@ -21,7 +24,8 @@ function FinishPage() {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div></AnimatePresence>
+    
   );
 }
 

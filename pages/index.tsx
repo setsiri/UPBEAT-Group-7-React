@@ -9,19 +9,27 @@ import mypic2 from "../public/logo.png";
 import Image from "next/image";
 import bg from "../public/bg1.gif";
 import Bganimation from "../public/bganimation";
+import {motion, AnimatePresence} from "framer-motion"
+import { useRouter } from "next/router";
 
 export default function Home() {
+
+  const router = useRouter();
   return (
-    <div >
-
-
-      {" "}
-      <div
+    <AnimatePresence>
+        <div
        className=" position-fill "
       >
         {" "}
         <Bganimation/>
-      </div>
+      </div><motion.div  initial={{ y:15,x: 0,opacity: 0 , }}
+    animate={{y:0,x:0, opacity: 1, }}
+    exit={{  y:0, x: 0,opacity: 0 }}
+    transition={{duration: 0.5,}}>
+
+
+      {" "}
+     
       <div
         className=" position-relative "
       >
@@ -55,6 +63,7 @@ export default function Home() {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div></AnimatePresence>
+   
   );
 }

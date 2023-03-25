@@ -6,6 +6,7 @@ import { useDelay } from "react-use-precision-timer";
 import Editor, { Monaco } from "@monaco-editor/react";
 import Bganimation from "../../public/bganimation"
 import CountDown from "../../components/CountDownTimer"
+import {motion, AnimatePresence} from "framer-motion"
 
 let client: Client;
 
@@ -75,12 +76,15 @@ function SetConstructionPlanPlayer2() {
   }
 
   return (
-<div>
-<div
+    <AnimatePresence> <div
        className=" position-fill "
       >
        <Bganimation/>
-      </div>
+      </div><motion.div  initial={{ y:50,x: 0,opacity: 0 , }}
+    animate={{y:0,x:0, opacity: 1, }}
+    exit={{ opacity: 0 }}
+    transition={{duration: 0.75,}}>
+
   <div className="position-relative">
       
       <div className="text-center my-4">
@@ -149,7 +153,8 @@ function SetConstructionPlanPlayer2() {
           </button>
         </div>
       
-    </div></div>
+    </div></motion.div></AnimatePresence> 
+
 
 
     

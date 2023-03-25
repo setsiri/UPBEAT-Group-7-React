@@ -6,6 +6,8 @@ import Editor, { Monaco } from "@monaco-editor/react";
 import Bganimation from "../../public/bganimation"
 import  { useRef } from "react";
 import style from "styled-jsx/style";
+import {motion, AnimatePresence} from "framer-motion"
+import { useRouter } from "next/router";
 
 import CountDown from "../../components/CountDownTimer"
 
@@ -71,12 +73,15 @@ function SetConstructionPlanPlayer1() {
   }
 
   return (
-    <div>
-      <div
+    <AnimatePresence>  <div
        className=" position-fill "
       >
        <Bganimation/>
-      </div>
+      </div><motion.div  initial={{ y:50,x: 0,opacity: 0 , }}
+    animate={{y:0,x:0, opacity: 1, }}
+    exit={{ opacity: 0 }}
+    transition={{duration: 0.75,}}>
+     
       <div className=" position-relative">
       
  
@@ -149,7 +154,8 @@ function SetConstructionPlanPlayer1() {
         </div>
      
   
- </div></div>
+ </div></motion.div></AnimatePresence>
+   
     
     
   );
