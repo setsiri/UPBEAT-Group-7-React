@@ -6,6 +6,7 @@ import Editor, { Monaco } from "@monaco-editor/react";
 import DiffEditor from "@monaco-editor/react";
 import Bganimation from "../../public/bganimation"
 import {motion, AnimatePresence} from "framer-motion"
+import { Ring } from '@uiball/loaders'
 
 let client: Client;
 
@@ -167,11 +168,15 @@ function UpdateConstructionPlan() {
 
     <div className="text-center my-3 text-black">
 
-      <h5>
-        state : computing...<i className="bi bi-hourglass-split"></i> / compute
+    <h5 className="text-black my-4">
+        state : computing <Ring 
+ size={22}
+ lineWeight={5}
+ speed={2} 
+ color="black" 
+/> / compute
         finished <i className="bi bi-check-circle-fill"></i> / syntax error
-        please check again <i className="bi bi-emoji-frown-fill"></i>
-      </h5>
+        please check again <i className="bi bi-emoji-frown-fill"></i>  </h5>
 
       <div className="text-center">
         <button className="btn btn-info my-3" onClick={onCheck}>

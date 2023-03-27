@@ -7,6 +7,7 @@ import Image from "next/image";
 import Bganimation from "../../public/bganimation"
 import {motion, AnimatePresence} from "framer-motion"
 import { useRouter } from "next/router";
+import { Ring } from '@uiball/loaders'
 
 let client: Client;
 
@@ -224,11 +225,15 @@ function SetConfigurationPlan() {
             setInterest_pct(Number.parseInt(event.target.value));
           }}
         ></input>
-      </div><h5 className="text-black">
-        state : computing...<i className="bi bi-hourglass-split"></i> / compute
+      </div>  <h5 className="text-black my-4">
+        state : computing <Ring 
+ size={22}
+ lineWeight={5}
+ speed={2} 
+ color="black" 
+/> / compute
         finished <i className="bi bi-check-circle-fill"></i> / syntax error
-        please check again <i className="bi bi-emoji-frown-fill"></i>
-      </h5> </div>
+        please check again <i className="bi bi-emoji-frown-fill"></i>  </h5> </div>
 
   
   <div className="d-grid gap-2 col-1 mx-5 text-black">

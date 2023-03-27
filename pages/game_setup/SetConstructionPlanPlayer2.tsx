@@ -7,6 +7,7 @@ import Editor, { Monaco } from "@monaco-editor/react";
 import Bganimation from "../../public/bganimation"
 import CountDown from "../../components/CountDownTimer"
 import {motion, AnimatePresence} from "framer-motion"
+import { Ring } from '@uiball/loaders'
 
 let client: Client;
 
@@ -123,11 +124,15 @@ function SetConstructionPlanPlayer2() {
       /></div></div>
     </div>
     <CountDown seconds={5} />
-      <h5 className="text-black my-4">
-        state : computing...<i className="bi bi-hourglass-split"></i> / compute
+    <h5 className="text-black my-4">
+        state : computing <Ring 
+ size={22}
+ lineWeight={5}
+ speed={2} 
+ color="black" 
+/> / compute
         finished <i className="bi bi-check-circle-fill"></i> / syntax error
-        please check again <i className="bi bi-emoji-frown-fill"></i>
-      </h5>
+        please check again <i className="bi bi-emoji-frown-fill"></i>  </h5>
       </div>
 
       <div className="text-center">

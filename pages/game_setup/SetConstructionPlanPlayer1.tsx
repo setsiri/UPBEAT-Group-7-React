@@ -10,6 +10,9 @@ import {motion, AnimatePresence} from "framer-motion"
 import { useRouter } from "next/router";
 
 import CountDown from "../../components/CountDownTimer"
+import { Ring } from '@uiball/loaders'
+
+
 
 
 let client: Client;
@@ -124,7 +127,12 @@ function SetConstructionPlanPlayer1() {
     </div>
      <CountDown seconds={5} />
        <h5 className="text-black my-4">
-        state : computing...<i className="bi bi-hourglass-split"></i> / compute
+        state : computing <Ring 
+ size={22}
+ lineWeight={5}
+ speed={2} 
+ color="black" 
+/> / compute
         finished <i className="bi bi-check-circle-fill"></i> / syntax error
         please check again <i className="bi bi-emoji-frown-fill"></i>  </h5>
 
