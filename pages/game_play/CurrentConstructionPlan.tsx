@@ -66,13 +66,16 @@ function CurrentConstructionPlan() {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.75 }}
       >
+        <Bganimation />
         <div className=" position-relative">
           <div className="  my-4 text-center">
-            <button className="btn btn-secondary my-3">
-              <Link href="/">back to homepage</Link>
-            </button>
+            <Link href="/">
+              <button className="btn btn-secondary my-3">
+                back to homepage
+              </button>
+            </Link>
             <h2 className="text-black my-3">
-              Current ConstructionPlan : Player {curPlayer + 1}
+              Current ConstructionPlan : Player {curPlayer}
             </h2>
           </div>
 
@@ -98,15 +101,17 @@ function CurrentConstructionPlan() {
           </div>
 
           <div className="d-grid gap-2 d-md-flex justify-content-md-center my-3">
-            <button className="btn btn-primary">
-              <Link href="/game_play/UpdateConstructionPlan">
+            <Link href="/game_play/UpdateConstructionPlan">
+              <button className="btn btn-primary">
                 UpdateConstructionPlan
-              </Link>
-            </button>
+              </button>
+            </Link>
 
-            <button type="button" className="btn btn-primary">
-              <Link href="/game_play/TerritoryPage">Start</Link>
-            </button>
+            <Link href="/game_play/TerritoryPage">
+              <button type="button" className="btn btn-primary">
+                Start
+              </button>
+            </Link>
           </div>
         </div>
       </motion.div>

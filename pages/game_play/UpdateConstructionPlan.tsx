@@ -185,38 +185,40 @@ function UpdateConstructionPlan() {
         ></textarea>
       </div> */}
 
-          <div className="text-center my-3 text-black">
-            <div className="text-light">
-              {" "}
-              <CountDown seconds={1800} />
-            </div>{" "}
-            <h5 className="text-black my-4">
-              state : computing{" "}
-              <Ring size={22} lineWeight={5} speed={2} color="black" /> /
-              compute finished <i className="bi bi-check-circle-fill"></i> /
-              syntax error please check again{" "}
-              <i className="bi bi-emoji-frown-fill"></i>{" "}
-            </h5>
-            <div className="text-center">
-              <button className="btn btn-info my-3" onClick={onCheck}>
-                check
-              </button>
-            </div>
-            <div className="text-center">
-              <button
-                className="btn btn-primary"
-                onClick={onChange}
-                disabled={!isCorrectSyntax}
-              >
-                <Link href="/game_play/CurrentConstructionPlan">
-                  finished changing
-                </Link>
-              </button>
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    </AnimatePresence>
+    <div className="text-center my-3 text-black">
+
+    <h5 className="text-black my-4">
+        state : computing <Ring 
+ size={22}
+ lineWeight={5}
+ speed={2} 
+ color="black" 
+/> / compute
+        finished <i className="bi bi-check-circle-fill"></i> / syntax error
+        please check again <i className="bi bi-emoji-frown-fill"></i>  </h5>
+
+      <div className="text-center">
+        <button className="btn btn-info my-3" onClick={onCheck}>
+          check
+        </button>
+      </div>
+      <div className="text-center">
+        <Link href="/game_play/CurrentConstructionPlan">
+          <button
+            className="btn btn-primary"
+            onClick={onChange}
+            disabled={!isCorrectSyntax}
+          >
+            finished changing
+          </button>
+        </Link>
+      </div>
+    </div></div></motion.div></AnimatePresence>
+
+
+
+   
+   
   );
 }
 

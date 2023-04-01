@@ -29,9 +29,11 @@ function HowtoPlay() {
       <div className=" mx-5 my-3 text-black position-relative ">
     
       <div className="text-center">
-        <button className="btn btn-secondary">
-          <Link href="/">back to homepage</Link>
-        </button>
+        <Link href="/">
+          <button className="btn btn-secondary">
+            back to homepage
+          </button>
+        </Link>
        
       </div>
       

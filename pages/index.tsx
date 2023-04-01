@@ -47,19 +47,19 @@ export default function Home() {
             <Image src={mypic2} alt={""} />
           </div>
 
-          <div className="text-center my-4 text-light ">
-            <h3 color="dark">Homepage</h3>
-          </div>
-          <div className="d-grid gap-2 col-1 mx-auto ">
-            <button className="btn btn-primary  btn-lg">
-              <Link href="/HowtoPlay">how to play</Link>
-            </button>
-            <button className="btn btn-primary  btn-lg">
-              <Link href="/game_setup/SetConfigurationPlan">start game</Link>
-            </button>
-          </div>
+        <div className="text-center my-4 text-black ">
+          <h3 color="dark">Homepage</h3>
         </div>
-      </motion.div>
-    </AnimatePresence>
+        <div className="d-grid gap-2 col-1 mx-auto ">
+          <Link href="/HowtoPlay"><button className="btn btn-primary">
+            how to play
+          </button></Link>
+          <Link href="/game_setup/SetConfigurationPlan"><button className="btn btn-primary">
+            start game
+          </button></Link>
+        </div>
+      </div>
+    </motion.div></AnimatePresence>
+   
   );
 }
