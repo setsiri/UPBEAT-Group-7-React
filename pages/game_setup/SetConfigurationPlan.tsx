@@ -71,9 +71,9 @@ function SetConfigurationPlan() {
       >
         <div className="position-relative">
           <div className="text-center my-4">
-            <button className="btn btn-secondary">
-              <Link href="/">back to homepage</Link>
-            </button>
+            <Link href="/">
+              <button className="btn btn-secondary">back to homepage</button>
+            </Link>
           </div>
           <h2 className="text-center text-black my-4">
             Setup ConfigurationPlan
@@ -296,9 +296,11 @@ function SetConfigurationPlan() {
             <button className="btn btn-info my-3 text-center">check</button>
           </div>
           <div className="text-center">
-            <button className="btn btn-primary text-center" onClick={onNext}>
-              <Link href="/game_setup/SetConstructionPlanPlayer1">Next</Link>
-            </button>
+            <Link href="/game_setup/SetConstructionPlanPlayer1">
+              <button className="btn btn-primary text-center" onClick={onNext}>
+                Next
+              </button>
+            </Link>
           </div>
         </div>
       </motion.div>

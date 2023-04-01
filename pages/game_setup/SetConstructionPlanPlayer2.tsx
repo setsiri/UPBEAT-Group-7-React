@@ -4,10 +4,10 @@ import React, { useEffect, useState } from "react";
 import { Client } from "@stomp/stompjs";
 import { useDelay } from "react-use-precision-timer";
 import Editor, { Monaco } from "@monaco-editor/react";
-import Bganimation from "../../public/bganimation"
-import CountDown from "../../components/CountDownTimer"
-import {motion, AnimatePresence} from "framer-motion"
-import { Ring } from '@uiball/loaders'
+import Bganimation from "../../public/bganimation";
+import CountDown from "../../components/CountDownTimer";
+import { motion, AnimatePresence } from "framer-motion";
+import { Ring } from "@uiball/loaders";
 
 let client: Client;
 
@@ -34,6 +34,30 @@ function SetConstructionPlanPlayer2() {
       client.activate();
     }
   }, []);
+
+  function displayState(input) {
+    if (input == "onGoing") {
+      return (
+        <div>
+          state : computing{" "}
+          <Ring size={22} lineWeight={5} speed={2} color="black" />
+        </div>
+      );
+    } else if (input == "finsih") {
+      return (
+        <div>
+          compute finished <i className="bi bi-check-circle-fill"></i>
+        </div>
+      );
+    } else if (input == "error") {
+      return (
+        <div>
+          syntax error please check again{" "}
+          <i className="bi bi-emoji-frown-fill"></i>
+        </div>
+      );
+    }
+  }
 
   const onCheck = () => {
     if (client) {
@@ -77,93 +101,100 @@ function SetConstructionPlanPlayer2() {
   }
 
   return (
-    <AnimatePresence> <div
-       className=" position-fill "
+    <AnimatePresence>
+      <div className=" position-fill ">
+        <Bganimation />
+      </div>
+      <motion.div
+        initial={{ y: 50, x: 0, opacity: 0 }}
+        animate={{ y: 0, x: 0, opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.75 }}
       >
-       <Bganimation/>
-      </div><motion.div  initial={{ y:50,x: 0,opacity: 0 , }}
-    animate={{y:0,x:0, opacity: 1, }}
-    exit={{ opacity: 0 }}
-    transition={{duration: 0.75,}}>
-
-  <div className="position-relative">
-      
-      <div className="text-center my-4">
-    <button className="btn btn-secondary">
-      <Link href="/">back to homepage</Link>
-    </button>
-    <h2 className="text-black my-3">Setup ConstructionPlan : Player2</h2>
-  </div>
-
-      <div className="text-center">
-      
-{/* 
-  
-      <div>
+        <div
+          className="position-relative text-center"
+          style={{ marginTop: "1rem" }}
+        >
+          {/* 
+  <div>
         <textarea
           rows={25}
           cols={100}
-          value={plan2}
+          value={plan1}
           onChange={(event) => {
-            setPlan2(event.target.value);
+            setPlan1(event.target.value);
             setIsCorrectSyntax(false);
           }}
         ></textarea>
-      </div>
-
-*/}  
-     
-     <div  style={{display: 'flex', justifyContent: 'center'}} className="my-3">
-     <div style={{border: '6px outset '}}>
-          <div style={{border: '3px inset '}}><Editor
-        height="50vh"
-        width="90vh"
-        language="java"
-        defaultValue={plan2}
-        onChange={handleEditorChange}
-      /></div></div>
-    </div>
-    <CountDown seconds={5} />
-    <h5 className="text-black my-4">
-        state : computing <Ring 
- size={22}
- lineWeight={5}
- speed={2} 
- color="black" 
-/> / compute
-        finished <i className="bi bi-check-circle-fill"></i> / syntax error
-        please check again <i className="bi bi-emoji-frown-fill"></i>  </h5>
-      </div>
-
-      <div className="text-center">
-        <button className="btn btn-info my-3" onClick={onCheck}>
-          check
-        </button>
-      </div>
- 
-      
-        <div className="d-grid gap-2 d-md-flex justify-content-md-center" role="group" aria-label="Basic example">
-          <button type="button" className="btn btn-primary">
-            <Link href="/game_setup/SetConstructionPlanPlayer1">Back</Link>
-          </button>
-
-          <button
-            type="button"
-            className="btn btn-primary"
-            disabled={!isCorrectSyntax}
+      </div> 
+*/}
+          <Link href="/">
+            <button className="btn btn-secondary">back to homepage</button>
+          </Link>
+          <h2 className="text-black my-3">Setup ConstructionPlan : Player2</h2>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+            className="my-3"
           >
-            <Link href="/game_play/CurrentConstructionPlan" onClick={onStart}>
-              Start
+            <div style={{ border: "6px outset " }}>
+              <div style={{ border: "3px inset " }}>
+                <Editor
+                  height="65vh"
+                  width="110vh"
+                  language="java"
+                  defaultValue={plan2}
+                  onChange={handleEditorChange}
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <h5 className="text-black my-4" style={{ marginRight: "100px" }}>
+              {displayState("onGoing")}
+            </h5>
+            <CountDown seconds={5} />
+          </div>
+
+          <div className="text-center">
+            <Link href="/game_setup/SetConstructionPlanPlayer1">
+              <button
+                type="button"
+                className="btn btn-primary"
+                style={{ width: "10rem" }}
+              >
+                Back
+              </button>
             </Link>
-          </button>
+            <button
+              className="btn btn-info my-3"
+              style={{ marginInline: "3rem", width: "10rem" }}
+              onClick={onCheck}
+            >
+              check
+            </button>
+            <Link href="/game_play/CurrentConstructionPlan" onClick={onStart}>
+              <button
+                type="button"
+                className="btn btn-primary"
+                style={{ width: "10rem" }}
+                disabled={!isCorrectSyntax}
+              >
+                Start
+              </button>
+            </Link>
+          </div>
         </div>
-      
-    </div></motion.div></AnimatePresence> 
-
-
-
-    
-    
+      </motion.div>
+    </AnimatePresence>
   );
 }
 

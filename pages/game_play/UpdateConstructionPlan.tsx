@@ -184,15 +184,15 @@ function UpdateConstructionPlan() {
         </button>
       </div>
       <div className="text-center">
-        <button
-          className="btn btn-primary"
-          onClick={onChange}
-          disabled={!isCorrectSyntax}
-        >
-          <Link href="/game_play/CurrentConstructionPlan">
+        <Link href="/game_play/CurrentConstructionPlan">
+          <button
+            className="btn btn-primary"
+            onClick={onChange}
+            disabled={!isCorrectSyntax}
+          >
             finished changing
-          </Link>
-        </button>
+          </button>
+        </Link>
       </div>
     </div></div></motion.div></AnimatePresence>
 

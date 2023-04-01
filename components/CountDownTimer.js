@@ -30,6 +30,6 @@ export default function CountDownTimer({seconds}) {
         }
     }, [countdown])
   return (
-    <h5>Remaining-time : {formatTime(countdown)}</h5>
+    <h5>⏳ : {formatTime(countdown)}</h5>
   )
 }

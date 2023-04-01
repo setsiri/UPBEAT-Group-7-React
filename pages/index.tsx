@@ -55,12 +55,12 @@ export default function Home() {
           <h3 color="dark">Homepage</h3>
         </div>
         <div className="d-grid gap-2 col-1 mx-auto ">
-          <button className="btn btn-primary">
-            <Link href="/HowtoPlay">how to play</Link>
-          </button>
-          <button className="btn btn-primary">
-            <Link href="/game_setup/SetConfigurationPlan">start game</Link>
-          </button>
+          <Link href="/HowtoPlay"><button className="btn btn-primary">
+            how to play
+          </button></Link>
+          <Link href="/game_setup/SetConfigurationPlan"><button className="btn btn-primary">
+            start game
+          </button></Link>
         </div>
       </div>
     </motion.div></AnimatePresence>
