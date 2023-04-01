@@ -8,6 +8,10 @@ import Bganimation from "../../public/bganimation";
 import CountDown from "../../components/CountDownTimer";
 import { motion, AnimatePresence } from "framer-motion";
 import { Ring } from "@uiball/loaders";
+import Bganimation from "../../public/bganimation";
+import CountDown from "../../components/CountDownTimer";
+import { motion, AnimatePresence } from "framer-motion";
+import { Ring } from "@uiball/loaders";
 
 let client: Client;
 

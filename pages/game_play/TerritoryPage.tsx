@@ -6,6 +6,8 @@ import Action from "@/dataTypes/Action";
 import region from "@/dataTypes/territory";
 import player from "@/dataTypes/player";
 import StatusDisplay from "@/components/StatusDisplsy";
+import { useDelay } from "react-use-precision-timer";
+import { useTimer } from "react-use-precision-timer";
 
 let client: Client;
 let body: any;
@@ -16,6 +18,11 @@ function TerritoryPage() {
   const [action, setAction] = useState(null);
   const [players, setPlayers] = useState([]);
   const [territory, setTerritory] = useState([[]]);
+
+  const callback = React.useCallback(() => console.log("Boom"), []);
+  // The callback will be called every 1000 milliseconds.
+  const timer = useTimer({ delay: 1000 }, callback);
+  timer.start();
 
   useEffect(() => {
     if (!client) {
@@ -68,6 +75,10 @@ function TerritoryPage() {
             });
             setTerritory(result);
             /* console.log(territory); */
+
+            if (action.action === "done") {
+              clearInterval(getData);
+            }
           });
         },
       });
@@ -120,7 +131,12 @@ function TerritoryPage() {
         action={action}
         players={players}
       ></StatusDisplay>
-      <Test3 territory={territory} players={players}></Test3>
+      <Test3
+        territory={territory}
+        players={players}
+        turn={curPlayer}
+        action={action}
+      ></Test3>
     </div>
   );
 }

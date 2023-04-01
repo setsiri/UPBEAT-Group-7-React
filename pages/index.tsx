@@ -9,35 +9,30 @@ import mypic2 from "../public/logo.png";
 import Image from "next/image";
 import bg from "../public/bg1.gif";
 import Bganimation from "../public/bganimation";
-import {motion, AnimatePresence} from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 
 export default function Home() {
-
   const router = useRouter();
   return (
     <AnimatePresence>
-        <div
-       className=" position-fill "
+      <div className=" position-fill ">
+        {" "}
+        <Bganimation />
+      </div>
+      <motion.div
+        initial={{ y: 15, x: 0, opacity: 0 }}
+        animate={{ y: 0, x: 0, opacity: 1 }}
+        exit={{ y: 0, x: 0, opacity: 0 }}
+        transition={{ duration: 0.5 }}
       >
         {" "}
-        <Bganimation/>
-      </div><motion.div  initial={{ y:15,x: 0,opacity: 0 , }}
-    animate={{y:0,x:0, opacity: 1, }}
-    exit={{  y:0, x: 0,opacity: 0 }}
-    transition={{duration: 0.5,}}>
+        <div className=" position-relative ">
+          <Head>
+            <title>UPBEAT-G7</title>
+          </Head>
 
-
-      {" "}
-     
-      <div
-        className=" position-relative "
-      >
-        <Head>
-          <title>UPBEAT-G7</title>
-        </Head>
-
-        {/*backgroud gif 
+          {/*backgroud gif 
 <div style={{
   zIndex: -1,
   position: "fixed",
@@ -47,9 +42,9 @@ export default function Home() {
 </div>
 */}
 
-        <div className="text-center mx-auto ">
-          <Image src={mypic2} alt={""} />
-        </div>
+          <div className="text-center mx-auto ">
+            <Image src={mypic2} alt={""} />
+          </div>
 
         <div className="text-center my-4 text-black ">
           <h3 color="dark">Homepage</h3>

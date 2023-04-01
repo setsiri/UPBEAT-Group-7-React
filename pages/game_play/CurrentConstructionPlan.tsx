@@ -4,8 +4,8 @@ import Head from "next/head";
 import { Client } from "@stomp/stompjs";
 import { useDelay } from "react-use-precision-timer";
 import Editor, { Monaco } from "@monaco-editor/react";
-import Bganimation from "../../public/bganimation"
-import {motion, AnimatePresence} from "framer-motion"
+import Bganimation from "../../public/bganimation";
+import { motion, AnimatePresence } from "framer-motion";
 
 let client: Client;
 
@@ -59,8 +59,15 @@ function CurrentConstructionPlan() {
   }
 
   return (
-<AnimatePresence><div
-       className=" position-fill "
+    <AnimatePresence>
+      <div className=" position-fill ">
+        <Bganimation />
+      </div>
+      <motion.div
+        initial={{ y: 100, x: 0, opacity: 0 }}
+        animate={{ y: 0, x: 0, opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.75 }}
       >
        <Bganimation/>
       </div><motion.div  initial={{ y:100,x: 0,opacity: 0 , }}
@@ -78,7 +85,7 @@ function CurrentConstructionPlan() {
         <h2 className="text-black my-3">Current ConstructionPlan : Player {curPlayer}</h2>
       </div>
 
-     {/* 
+          {/* 
        <div>
         <textarea
           rows={22}
@@ -88,20 +95,27 @@ function CurrentConstructionPlan() {
         ></textarea>
       </div>
      */}
-     
-     <div  style={{display: 'flex', justifyContent: 'center'}} className="my-3">
-     <div style={{border: '6px outset '}}>
-          <div style={{border: '3px inset '}}><Editor
-        height="50vh"
-        width="90vh"
-        language="java"
-        defaultValue={curPlan}
-        onChange={handleEditorChange}
-      /></div></div>
-    </div>
 
-      
-    
+          <div
+            style={{ display: "flex", justifyContent: "center" }}
+            className="my-3"
+          >
+            <div style={{ border: "6px outset " }}>
+              <div style={{ border: "3px inset " }}>
+                <Editor
+                  height="60vh"
+                  width="115vh"
+                  language="java"
+                  options={{
+                    scrollBeyondLastLine: false,
+                    fontSize: "17px",
+                  }}
+                  defaultValue={curPlan}
+                  onChange={handleEditorChange}
+                />
+              </div>
+            </div>
+          </div>
 
       <div className="d-grid gap-2 d-md-flex justify-content-md-center my-3">
         <Link href="/game_play/UpdateConstructionPlan">
