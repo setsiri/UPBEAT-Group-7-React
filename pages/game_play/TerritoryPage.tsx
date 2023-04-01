@@ -130,18 +130,40 @@ function TerritoryPage() {
       <h2 className="d-grid gap-2 mx-5 my-2  text-black">
         Territory : Player {curPlayer + 1}
       </h2>
-      <StatusDisplay
-        curPlayer={curPlayer}
-        status={status}
-        action={action}
-        players={players}
-      ></StatusDisplay>
-      <Test3
-        territory={territory}
-        players={players}
-        turn={curPlayer}
-        action={action}
-      ></Test3>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "left",
+        }}
+      >
+        <div
+          style={{
+            marginLeft: " 1rem",
+            marginRight: "1rem",
+            padding: "1rem",
+            backgroundColor: "white",
+            borderRadius: "1rem",
+            width: "60rem",
+            height:"45rem"
+          }}
+        >
+          <StatusDisplay
+            curPlayer={curPlayer}
+            status={status}
+            action={action}
+            players={players}
+          ></StatusDisplay>
+        
+        </div>
+        <Test3
+            territory={territory}
+            players={players}
+            turn={curPlayer}
+            action={action}
+          ></Test3>
+      </div>
+      
+      
     </div>
   );
 }
