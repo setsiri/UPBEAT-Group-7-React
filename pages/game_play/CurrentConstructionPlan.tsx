@@ -70,11 +70,6 @@ function CurrentConstructionPlan() {
         transition={{ duration: 0.75 }}
       >
        <Bganimation/>
-      </div><motion.div  initial={{ y:100,x: 0,opacity: 0 , }}
-    animate={{y:0,x:0, opacity: 1, }}
-    exit={{ opacity: 0 }}
-    transition={{duration: 0.75,}}> 
-
    <div className=" position-relative"> 
        <div className="  my-4 text-center">
         <Link href="/">

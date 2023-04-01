@@ -5,15 +5,10 @@ import { Client } from "@stomp/stompjs";
 import Editor, { Monaco } from "@monaco-editor/react";
 import Bganimation from "../../public/bganimation";
 import { useRef } from "react";
-import Bganimation from "../../public/bganimation";
-import { useRef } from "react";
 import style from "styled-jsx/style";
-import { motion, AnimatePresence } from "framer-motion";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 
-import CountDown from "../../components/CountDownTimer";
-import { Ring } from "@uiball/loaders";
 import CountDown from "../../components/CountDownTimer";
 import { Ring } from "@uiball/loaders";
 
