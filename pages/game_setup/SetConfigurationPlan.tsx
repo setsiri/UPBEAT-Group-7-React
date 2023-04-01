@@ -85,13 +85,23 @@ function SetConfigurationPlan() {
               <input
                 type="number"
                 min="5"
+<<<<<<< HEAD
                 max="15"
+=======
+                max="10"
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 aria-label="First name"
                 className="form-control"
                 placeholder={m}
                 value={m}
                 onChange={(event) => {
+<<<<<<< HEAD
                   setM(Number.parseInt(event.target.value));
+=======
+                  if (Number(event.target.value) < 5) setM(5);
+                  else if (Number(event.target.value) > 10) setM(10);
+                  else setM(Number(event.target.value));
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 }}
               ></input>
 
@@ -99,13 +109,24 @@ function SetConfigurationPlan() {
               <input
                 type="number"
                 min="5"
+<<<<<<< HEAD
                 max="15"
+=======
+                max="10"
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 aria-label="Last name"
                 className="form-control"
                 placeholder={n}
                 value={n}
                 onChange={(event) => {
+<<<<<<< HEAD
                   setN(Number.parseInt(event.target.value));
+=======
+                  if (Number(event.target.value) < 5) setN(5);
+                  else if (Number(event.target.value) > 10) setN(10);
+                  else setN(Number(event.target.value));
+                  //setN(Number.parseInt(Number(event.target.value)));
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 }}
               ></input>
             </div>
@@ -113,12 +134,25 @@ function SetConfigurationPlan() {
               <span className="input-group-text">init_plan_min</span>
               <input
                 type="number"
+<<<<<<< HEAD
+=======
+                min="0"
+                max="60"
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 aria-label="First name"
                 className="form-control"
                 placeholder={init_plan_min}
                 value={init_plan_min}
                 onChange={(event) => {
+<<<<<<< HEAD
                   setInit_plan_min(Number.parseInt(event.target.value));
+=======
+                  if (Number(event.target.value) < 0) setInit_plan_min(0);
+                  else if (Number(event.target.value) > 60)
+                    setInit_plan_min(60);
+                  else setInit_plan_min(Number(event.target.value));
+                  //setInit_plan_min(Number.parseInt(Number(event.target.value)));
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 }}
               ></input>
             </div>
@@ -126,12 +160,25 @@ function SetConfigurationPlan() {
               <span className="input-group-text">init_plan_sec</span>
               <input
                 type="number"
+<<<<<<< HEAD
+=======
+                min="0"
+                max="59"
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 aria-label="Last name"
                 className="form-control"
                 placeholder={init_plan_sec}
                 value={init_plan_sec}
                 onChange={(event) => {
+<<<<<<< HEAD
                   setInit_plan_sec(Number.parseInt(event.target.value));
+=======
+                  if (Number(event.target.value) < 0) setInit_plan_sec(0);
+                  else if (Number(event.target.value) > 59)
+                    setInit_plan_sec(59);
+                  else setInit_plan_sec(Number(event.target.value));
+                  //setInit_plan_sec(Number.parseInt(Number(event.target.value)));
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 }}
               ></input>
             </div>
@@ -139,12 +186,25 @@ function SetConfigurationPlan() {
               <span className="input-group-text">init_budget</span>
               <input
                 type="number"
+<<<<<<< HEAD
+=======
+                min="0"
+                max="1000000"
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 aria-label="First name"
                 className="form-control"
                 placeholder={init_budget}
                 value={init_budget}
                 onChange={(event) => {
+<<<<<<< HEAD
                   setInit_budget(Number.parseInt(event.target.value));
+=======
+                  if (Number(event.target.value) < 0) setInit_budget(0);
+                  else if (Number(event.target.value) > 1000000)
+                    setInit_budget(1000000);
+                  else setInit_budget(Number(event.target.value));
+                  //setInit_budget(Number.parseInt(Number(event.target.value)));
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 }}
               ></input>
             </div>
@@ -152,12 +212,25 @@ function SetConfigurationPlan() {
               <span className="input-group-text">init_center_dep</span>
               <input
                 type="number"
+<<<<<<< HEAD
+=======
+                min="0"
+                max="100000"
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 aria-label="Last name"
                 className="form-control"
                 placeholder={init_center_dep}
                 value={init_center_dep}
                 onChange={(event) => {
+<<<<<<< HEAD
                   setInit_center_dep(Number.parseInt(event.target.value));
+=======
+                  if (Number(event.target.value) < 0) setInit_center_dep(0);
+                  else if (Number(event.target.value) > 100000)
+                    setInit_center_dep(100000);
+                  else setInit_center_dep(Number(event.target.value));
+                  //setInit_center_dep(Number.parseInt(Number(event.target.value)));
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 }}
               ></input>
             </div>
@@ -165,12 +238,24 @@ function SetConfigurationPlan() {
               <span className="input-group-text">plan_rev_min</span>
               <input
                 type="number"
+<<<<<<< HEAD
+=======
+                min="0"
+                max="60"
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 aria-label="First name"
                 className="form-control"
                 placeholder={plan_rev_min}
                 value={plan_rev_min}
                 onChange={(event) => {
+<<<<<<< HEAD
                   setPlan_rev_min(Number.parseInt(event.target.value));
+=======
+                  if (Number(event.target.value) < 0) setPlan_rev_min(0);
+                  else if (Number(event.target.value) > 60) setPlan_rev_min(60);
+                  else setPlan_rev_min(Number(event.target.value));
+                  //setPlan_rev_min(Number.parseInt(Number(event.target.value)));
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 }}
               ></input>
             </div>
@@ -178,12 +263,24 @@ function SetConfigurationPlan() {
               <span className="input-group-text">plan_rev_sec</span>
               <input
                 type="number"
+<<<<<<< HEAD
+=======
+                min="0"
+                max="59"
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 aria-label="Last name"
                 className="form-control"
                 placeholder={plan_rev_sec}
                 value={plan_rev_sec}
                 onChange={(event) => {
+<<<<<<< HEAD
                   setPlan_rev_sec(Number.parseInt(event.target.value));
+=======
+                  if (Number(event.target.value) < 0) setPlan_rev_sec(0);
+                  else if (Number(event.target.value) > 59) setPlan_rev_sec(59);
+                  else setPlan_rev_sec(Number(event.target.value));
+                  //setPlan_rev_sec(Number.parseInt(Number(event.target.value)));
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 }}
               ></input>
             </div>
@@ -191,12 +288,25 @@ function SetConfigurationPlan() {
               <span className="input-group-text">rev_cost</span>
               <input
                 type="number"
+<<<<<<< HEAD
+=======
+                min="0"
+                max="100000"
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 aria-label="Last name"
                 className="form-control"
                 placeholder={rev_cost}
                 value={rev_cost}
                 onChange={(event) => {
+<<<<<<< HEAD
                   setRev_cost(Number.parseInt(event.target.value));
+=======
+                  if (Number(event.target.value) < 0) setRev_cost(0);
+                  else if (Number(event.target.value) > 100000)
+                    setRev_cost(100000);
+                  else setRev_cost(Number(event.target.value));
+                  //setRev_cost(Number.parseInt(Number(event.target.value)));
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 }}
               ></input>
             </div>
@@ -204,12 +314,25 @@ function SetConfigurationPlan() {
               <span className="input-group-text">max_dep</span>
               <input
                 type="number"
+<<<<<<< HEAD
+=======
+                min="0"
+                max="1000000"
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 aria-label="First name"
                 className="form-control"
                 placeholder={max_dep}
                 value={max_dep}
                 onChange={(event) => {
+<<<<<<< HEAD
                   setMax_dep(Number.parseInt(event.target.value));
+=======
+                  if (Number(event.target.value) < 0) setMax_dep(0);
+                  else if (Number(event.target.value) > 1000000)
+                    setMax_dep(1000000);
+                  else setMax_dep(Number(event.target.value));
+                  //setMax_dep(Number.parseInt(Number(event.target.value)));
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 }}
               ></input>
             </div>
@@ -217,12 +340,25 @@ function SetConfigurationPlan() {
               <span className="input-group-text">interest_pct</span>
               <input
                 type="number"
+<<<<<<< HEAD
+=======
+                min="0"
+                max="1000"
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 aria-label="Last name"
                 className="form-control"
                 placeholder={interest_pct}
                 value={interest_pct}
                 onChange={(event) => {
+<<<<<<< HEAD
                   setInterest_pct(Number.parseInt(event.target.value));
+=======
+                  if (Number(event.target.value) < 0) setInterest_pct(0);
+                  else if (Number(event.target.value) > 1000)
+                    setInterest_pct(1000);
+                  else setInterest_pct(Number(event.target.value));
+                  //setInterest_pct(Number.parseInt(Number(event.target.value)));
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
                 }}
               ></input>
             </div>{" "}
@@ -232,12 +368,18 @@ function SetConfigurationPlan() {
               compute finished <i className="bi bi-check-circle-fill"></i> /
               syntax error please check again{" "}
               <i className="bi bi-emoji-frown-fill"></i>{" "}
+<<<<<<< HEAD
             </h5>{" "}
           </div>
           <div className="d-grid gap-2 col-1 mx-5 text-black"></div>{" "}
           <div className=" text-center">
             <button className="btn btn-info my-3 text-center">check</button>
           </div>
+=======
+            </h5>
+          </div>
+
+>>>>>>> a2185e04c8ec3c7396614419e3ae8969f449e7b9
           <div className="text-center">
             <button className="btn btn-primary text-center" onClick={onNext}>
               <Link href="/game_setup/SetConstructionPlanPlayer1">Next</Link>

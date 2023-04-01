@@ -11,7 +11,6 @@ import {
 import region from "@/dataTypes/territory";
 
 function Test3(props: any) {
-  /* console.log(props.territory); */
   const hexagons: Hex[] = [];
   const hexagonSize = { x: 7, y: 7 };
 
@@ -54,13 +53,29 @@ function Test3(props: any) {
       /* "cityCenter" */
 
       if (props.territory[pos[0]][pos[1]] !== null) {
-        return (
-          <Text type={props.territory[pos[0]][pos[1]].type}>
-            {Math.floor(props.territory[pos[0]][pos[1]]?.deposit)}
-          </Text>
-        );
+        let text = "";
+
+        if (
+          pos[0] === props.players[props.turn]?.crewPos[0] &&
+          pos[1] === props.players[props.turn]?.crewPos[1]
+        ) {
+          if (props.turn === 0) text = "🧑🏻‍🌾";
+          else if (props.turn === 1) text = "🤴🏽";
+        } else text = Math.floor(props.territory[pos[0]][pos[1]]?.deposit);
+
+        return <Text type={props.territory[pos[0]][pos[1]].type}>{text}</Text>;
       } else {
-        return <Text type={"empty"}>{""}</Text>;
+        if (
+          pos[0] === props.players[props.turn]?.crewPos[0] &&
+          pos[1] === props.players[props.turn]?.crewPos[1]
+        ) {
+          let text = "";
+          if (props.turn === 0) text = "🧑🏻‍🌾";
+          else if (props.turn === 1) text = "🤴🏽";
+          return (
+            <Text type={props.territory[pos[0]][pos[1]]?.type}>{text}</Text>
+          );
+        } else return <Text type={"empty"}>{""}</Text>;
       }
     }
   };
