@@ -18,11 +18,13 @@ function TerritoryPage() {
   const [action, setAction] = useState(null);
   const [players, setPlayers] = useState([]);
   const [territory, setTerritory] = useState([[]]);
+  const [speed, setSpeed] = useState(1000);
 
-  const callback = React.useCallback(() => console.log("Boom"), []);
-  // The callback will be called every 1000 milliseconds.
-  const timer = useTimer({ delay: 1000 }, callback);
-  timer.start();
+  const callback = () => {
+    nextAction();
+  };
+  // The callback will be called every speed milliseconds.
+  const timer = useTimer({ delay: speed }, callback);
 
   useEffect(() => {
     if (!client) {
@@ -76,14 +78,17 @@ function TerritoryPage() {
             setTerritory(result);
             /* console.log(territory); */
 
-            if (action.action === "done") {
-              clearInterval(getData);
+            if (body["action"]["action"] === "done") {
+              timer.stop();
+              nextTurn();
+              timer.start();
             }
           });
         },
       });
       client.activate();
     }
+    timer.start();
   }, []);
 
   const nextAction = () => {
@@ -118,7 +123,7 @@ function TerritoryPage() {
           <button className="btn btn-danger my-3">next action</button>
         </div>
         <div className="  my-3 text-black" onClick={nextTurn}>
-          <button className="btn btn-danger my-3">next turn</button>
+          <button className="btn btn-danger my-3">Done</button>
         </div>
       </div>
 

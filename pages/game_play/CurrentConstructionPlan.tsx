@@ -8,14 +8,11 @@ import Bganimation from "../../public/bganimation";
 import { motion, AnimatePresence } from "framer-motion";
 
 let client: Client;
+let body: any;
 
 function CurrentConstructionPlan() {
-  const [curPlan, setCurPlan] = useState("done");
-  const [curPlayer, setCurPlayer] = useState(1);
-
-  const onceTimer = useDelay(100, () => {
-    wantData();
-  });
+  const [curPlan, setCurPlan] = useState("");
+  const [curPlayer, setCurPlayer] = useState(0);
 
   useEffect(() => {
     if (!client) {
@@ -23,17 +20,17 @@ function CurrentConstructionPlan() {
         brokerURL: "ws://localhost:8080/demo-websocket",
         onConnect: () => {
           client.subscribe("/game/get/data", (message) => {
-            console.log("get message");
-            const body = JSON.parse(message.body);
-            console.log(body);
+            /* console.log("get message"); */
+            body = JSON.parse(message.body);
             setCurPlayer(body["index"]);
             setCurPlan(body["configurationPlan"]);
+            console.log(curPlan);
           });
-          console.log("sub");
-          onceTimer.start();
+          /* console.log("sub"); */
+          wantData();
         },
       });
-      console.log("activate");
+      /* console.log("activate"); */
       client.activate();
     }
   }, []);
@@ -75,20 +72,9 @@ function CurrentConstructionPlan() {
               <Link href="/">back to homepage</Link>
             </button>
             <h2 className="text-black my-3">
-              Current ConstructionPlan : Player {curPlayer}
+              Current ConstructionPlan : Player {curPlayer + 1}
             </h2>
           </div>
-
-          {/* 
-       <div>
-        <textarea
-          rows={22}
-          cols={100}
-          value={curPlan}
-          onChange={() => {}}
-        ></textarea>
-      </div>
-     */}
 
           <div
             style={{ display: "flex", justifyContent: "center" }}

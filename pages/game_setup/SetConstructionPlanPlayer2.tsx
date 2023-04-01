@@ -26,7 +26,11 @@ function SetConstructionPlanPlayer2() {
           client.subscribe("/game/get/checkSyntax", (message) => {
             const body = JSON.parse(message.body);
             setIsCorrectSyntax(body);
-            console.log(body);
+            /* console.log(body); */
+            if (body) {
+              sendPlan();
+              onceTimer.start();
+            }
           });
         },
       });
@@ -48,13 +52,13 @@ function SetConstructionPlanPlayer2() {
     }
   };
 
-  const onceTimer = useDelay(100, () => {
+  const onceTimer = useDelay(50, () => {
     client.publish({
       destination: "/player/start",
     });
   });
 
-  const onStart = () => {
+  const sendPlan = () => {
     if (client) {
       if (client.connected) {
         client.publish({
@@ -64,9 +68,12 @@ function SetConstructionPlanPlayer2() {
             configurationPlan: plan2,
           }),
         });
-        onceTimer.start();
       }
     }
+  };
+
+  const onStart = () => {
+    /* onceTimer.start(); */
   };
 
   //ของ code editor

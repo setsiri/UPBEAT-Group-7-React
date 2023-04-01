@@ -11,6 +11,7 @@ import bg from "../public/bg1.gif";
 import Bganimation from "../public/bganimation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
+import { result, setResult } from "../dataTypes/configulation";
 
 export default function Home() {
   const router = useRouter();
