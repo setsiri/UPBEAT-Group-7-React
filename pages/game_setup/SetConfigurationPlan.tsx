@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import { Ring } from "@uiball/loaders";
 
 let client: Client;
-//
+
 function SetConfigurationPlan() {
   const [m, setM] = useState(10);
   const [n, setN] = useState(10);
