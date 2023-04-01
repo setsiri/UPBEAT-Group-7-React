@@ -4,10 +4,10 @@ import React, { useEffect, useState } from "react";
 import { Client } from "@stomp/stompjs";
 import { useDelay } from "react-use-precision-timer";
 import Editor, { Monaco } from "@monaco-editor/react";
-import Bganimation from "../../public/bganimation"
-import CountDown from "../../components/CountDownTimer"
-import {motion, AnimatePresence} from "framer-motion"
-import { Ring } from '@uiball/loaders'
+import Bganimation from "../../public/bganimation";
+import CountDown from "../../components/CountDownTimer";
+import { motion, AnimatePresence } from "framer-motion";
+import { Ring } from "@uiball/loaders";
 
 let client: Client;
 
@@ -77,27 +77,29 @@ function SetConstructionPlanPlayer2() {
   }
 
   return (
-    <AnimatePresence> <div
-       className=" position-fill "
+    <AnimatePresence>
+      {" "}
+      <div className=" position-fill ">
+        <Bganimation />
+      </div>
+      <motion.div
+        initial={{ y: 50, x: 0, opacity: 0 }}
+        animate={{ y: 0, x: 0, opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.75 }}
       >
-       <Bganimation/>
-      </div><motion.div  initial={{ y:50,x: 0,opacity: 0 , }}
-    animate={{y:0,x:0, opacity: 1, }}
-    exit={{ opacity: 0 }}
-    transition={{duration: 0.75,}}>
+        <div className="position-relative">
+          <div className="text-center my-4">
+            <button className="btn btn-secondary">
+              <Link href="/">back to homepage</Link>
+            </button>
+            <h2 className="text-black my-3">
+              Setup ConstructionPlan : Player2
+            </h2>
+          </div>
 
-  <div className="position-relative">
-      
-      <div className="text-center my-4">
-    <button className="btn btn-secondary">
-      <Link href="/">back to homepage</Link>
-    </button>
-    <h2 className="text-black my-3">Setup ConstructionPlan : Player2</h2>
-  </div>
-
-      <div className="text-center">
-      
-{/* 
+          <div className="text-center">
+            {/* 
   
       <div>
         <textarea
@@ -111,59 +113,66 @@ function SetConstructionPlanPlayer2() {
         ></textarea>
       </div>
 
-*/}  
-     
-     <div  style={{display: 'flex', justifyContent: 'center'}} className="my-3">
-     <div style={{border: '6px outset '}}>
-          <div style={{border: '3px inset '}}><Editor
-        height="50vh"
-        width="90vh"
-        language="java"
-        defaultValue={plan2}
-        onChange={handleEditorChange}
-      /></div></div>
-    </div>
-    <CountDown seconds={5} />
-    <h5 className="text-black my-4">
-        state : computing <Ring 
- size={22}
- lineWeight={5}
- speed={2} 
- color="black" 
-/> / compute
-        finished <i className="bi bi-check-circle-fill"></i> / syntax error
-        please check again <i className="bi bi-emoji-frown-fill"></i>  </h5>
-      </div>
+*/}
 
-      <div className="text-center">
-        <button className="btn btn-info my-3" onClick={onCheck}>
-          check
-        </button>
-      </div>
- 
-      
-        <div className="d-grid gap-2 d-md-flex justify-content-md-center" role="group" aria-label="Basic example">
-          <button type="button" className="btn btn-primary">
-            <Link href="/game_setup/SetConstructionPlanPlayer1">Back</Link>
-          </button>
+            <div
+              style={{ display: "flex", justifyContent: "center" }}
+              className="my-3"
+            >
+              <div style={{ border: "6px outset " }}>
+                <div style={{ border: "3px inset " }}>
+                  <Editor
+                    height="50vh"
+                    width="90vh"
+                    language="java"
+                    options={{
+                      scrollBeyondLastLine: false,
+                      fontSize: "17px",
+                    }}
+                    defaultValue={plan2}
+                    onChange={handleEditorChange}
+                  />
+                </div>
+              </div>
+            </div>
+            <CountDown seconds={5} />
+            <h5 className="text-black my-4">
+              state : computing{" "}
+              <Ring size={22} lineWeight={5} speed={2} color="black" /> /
+              compute finished <i className="bi bi-check-circle-fill"></i> /
+              syntax error please check again{" "}
+              <i className="bi bi-emoji-frown-fill"></i>{" "}
+            </h5>
+          </div>
 
-          <button
-            type="button"
-            className="btn btn-primary"
-            disabled={!isCorrectSyntax}
+          <div className="text-center">
+            <button className="btn btn-info my-3" onClick={onCheck}>
+              check
+            </button>
+          </div>
+
+          <div
+            className="d-grid gap-2 d-md-flex justify-content-md-center"
+            role="group"
+            aria-label="Basic example"
           >
-            <Link href="/game_play/CurrentConstructionPlan" onClick={onStart}>
-              Start
-            </Link>
-          </button>
+            <button type="button" className="btn btn-primary">
+              <Link href="/game_setup/SetConstructionPlanPlayer1">Back</Link>
+            </button>
+
+            <button
+              type="button"
+              className="btn btn-primary"
+              disabled={!isCorrectSyntax}
+            >
+              <Link href="/game_play/CurrentConstructionPlan" onClick={onStart}>
+                Start
+              </Link>
+            </button>
+          </div>
         </div>
-      
-    </div></motion.div></AnimatePresence> 
-
-
-
-    
-    
+      </motion.div>
+    </AnimatePresence>
   );
 }
 

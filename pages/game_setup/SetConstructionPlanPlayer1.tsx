@@ -3,17 +3,14 @@ import Link from "next/link";
 import Head from "next/head";
 import { Client } from "@stomp/stompjs";
 import Editor, { Monaco } from "@monaco-editor/react";
-import Bganimation from "../../public/bganimation"
-import  { useRef } from "react";
+import Bganimation from "../../public/bganimation";
+import { useRef } from "react";
 import style from "styled-jsx/style";
-import {motion, AnimatePresence} from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 
-import CountDown from "../../components/CountDownTimer"
-import { Ring } from '@uiball/loaders'
-
-
-
+import CountDown from "../../components/CountDownTimer";
+import { Ring } from "@uiball/loaders";
 
 let client: Client;
 
@@ -76,31 +73,28 @@ function SetConstructionPlanPlayer1() {
   }
 
   return (
-    <AnimatePresence>  <div
-       className=" position-fill "
+    <AnimatePresence>
+      {" "}
+      <div className=" position-fill ">
+        <Bganimation />
+      </div>
+      <motion.div
+        initial={{ y: 50, x: 0, opacity: 0 }}
+        animate={{ y: 0, x: 0, opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.75 }}
       >
-       <Bganimation/>
-      </div><motion.div  initial={{ y:50,x: 0,opacity: 0 , }}
-    animate={{y:0,x:0, opacity: 1, }}
-    exit={{ opacity: 0 }}
-    transition={{duration: 0.75,}}>
-     
-      <div className=" position-relative">
-      
- 
-
-
-  <div className="text-center my-4">
-    <button className="btn btn-secondary">
-      <Link href="/">back to homepage</Link>
-    </button>
-    <h2 className="text-black my-3">Setup ConstructionPlan : Player1</h2>
-  </div>
-  <div className="text-center"> 
-
-     
-
-{/* 
+        <div className=" position-relative">
+          <div className="text-center my-4">
+            <button className="btn btn-secondary">
+              <Link href="/">back to homepage</Link>
+            </button>
+            <h2 className="text-black my-3">
+              Setup ConstructionPlan : Player1
+            </h2>
+          </div>
+          <div className="text-center">
+            {/* 
   <div>
         <textarea
           rows={25}
@@ -112,60 +106,66 @@ function SetConstructionPlanPlayer1() {
           }}
         ></textarea>
       </div> 
-*/}  
+*/}
 
-      <div  style={{display: 'flex', justifyContent: 'center'}} className="my-3">
-        <div style={{border: '6px outset '}}>
-          <div style={{border: '3px inset '}}><Editor
-        height="50vh"
-        width="90vh"
-        language="java"
-        defaultValue={plan1}
-        onChange={handleEditorChange}
-      /></div></div>
-      
-    </div>
-     <CountDown seconds={5} />
-       <h5 className="text-black my-4">
-        state : computing <Ring 
- size={22}
- lineWeight={5}
- speed={2} 
- color="black" 
-/> / compute
-        finished <i className="bi bi-check-circle-fill"></i> / syntax error
-        please check again <i className="bi bi-emoji-frown-fill"></i>  </h5>
+            <div
+              style={{ display: "flex", justifyContent: "center" }}
+              className="my-3"
+            >
+              <div style={{ border: "6px outset " }}>
+                <div style={{ border: "3px inset " }}>
+                  <Editor
+                    height="50vh"
+                    width="90vh"
+                    options={{
+                      scrollBeyondLastLine: false,
+                      fontSize: "17px",
+                    }}
+                    language="java"
+                    defaultValue={plan1}
+                    onChange={handleEditorChange}
+                  />
+                </div>
+              </div>
+            </div>
+            <CountDown seconds={5} />
+            <h5 className="text-black my-4">
+              state : computing{" "}
+              <Ring size={22} lineWeight={5} speed={2} color="black" /> /
+              compute finished <i className="bi bi-check-circle-fill"></i> /
+              syntax error please check again{" "}
+              <i className="bi bi-emoji-frown-fill"></i>{" "}
+            </h5>
+          </div>
 
-     
-    
-    </div>
+          <div className="text-center">
+            {" "}
+            <button className="btn btn-info my-3" onClick={onCheck}>
+              check
+            </button>
+          </div>
 
-
-      <div className="text-center"> <button className="btn btn-info my-3" onClick={onCheck}>
-          check
-        </button></div>
-        
-        
-        <div className="d-grid gap-2 d-md-flex justify-content-md-center" role="group" aria-label="Basic example">
-          <button type="button" className="btn btn-primary">
-            <Link href="/game_setup/SetConfigurationPlan">Back</Link>
-          </button>
-
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={onNext}
-            disabled={!isCorrectSyntax}
+          <div
+            className="d-grid gap-2 d-md-flex justify-content-md-center"
+            role="group"
+            aria-label="Basic example"
           >
-            <Link href="/game_setup/SetConstructionPlanPlayer2">Next</Link>
-          </button>
+            <button type="button" className="btn btn-primary">
+              <Link href="/game_setup/SetConfigurationPlan">Back</Link>
+            </button>
+
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={onNext}
+              disabled={!isCorrectSyntax}
+            >
+              <Link href="/game_setup/SetConstructionPlanPlayer2">Next</Link>
+            </button>
+          </div>
         </div>
-     
-  
- </div></motion.div></AnimatePresence>
-   
-    
-    
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
