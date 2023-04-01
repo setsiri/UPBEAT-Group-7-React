@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  HexGrid,
-  Layout,
-  Hexagon,
-  GridGenerator,
-  Hex,
-  Text,
-  HexUtils,
-} from "../grid";
+import { HexGrid, Layout, Hexagon, Hex, Text } from "../grid";
 import region from "@/dataTypes/territory";
 
 function Test3(props: any) {
