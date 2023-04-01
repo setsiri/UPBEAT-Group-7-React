@@ -134,6 +134,7 @@ function TerritoryPage() {
         style={{
           display: "flex",
           justifyContent: "left",
+          marginTop: "2rem",
         }}
       >
         <div
@@ -143,8 +144,8 @@ function TerritoryPage() {
             padding: "1rem",
             backgroundColor: "white",
             borderRadius: "1rem",
-            width: "60rem",
-            height:"45rem"
+            width: "25rem",
+            height: "45rem",
           }}
         >
           <StatusDisplay
@@ -153,17 +154,14 @@ function TerritoryPage() {
             action={action}
             players={players}
           ></StatusDisplay>
-        
         </div>
         <Test3
-            territory={territory}
-            players={players}
-            turn={curPlayer}
-            action={action}
-          ></Test3>
+          territory={territory}
+          players={players}
+          turn={curPlayer}
+          action={action}
+        ></Test3>
       </div>
-      
-      
     </div>
   );
 }
