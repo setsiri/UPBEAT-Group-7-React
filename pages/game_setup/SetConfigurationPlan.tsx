@@ -289,12 +289,9 @@ function SetConfigurationPlan() {
               compute finished <i className="bi bi-check-circle-fill"></i> /
               syntax error please check again{" "}
               <i className="bi bi-emoji-frown-fill"></i>{" "}
-            </h5>{" "}
+            </h5>
           </div>
-          <div className="d-grid gap-2 col-1 mx-5 text-black"></div>{" "}
-          <div className=" text-center">
-            <button className="btn btn-info my-3 text-center">check</button>
-          </div>
+
           <div className="text-center">
             <button className="btn btn-primary text-center" onClick={onNext}>
               <Link href="/game_setup/SetConstructionPlanPlayer1">Next</Link>

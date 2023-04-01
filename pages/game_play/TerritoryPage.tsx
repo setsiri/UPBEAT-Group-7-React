@@ -120,7 +120,12 @@ function TerritoryPage() {
         action={action}
         players={players}
       ></StatusDisplay>
-      <Test3 territory={territory} players={players}></Test3>
+      <Test3
+        territory={territory}
+        players={players}
+        turn={curPlayer}
+        action={action}
+      ></Test3>
     </div>
   );
 }
