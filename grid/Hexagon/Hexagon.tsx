@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import { Hex } from "../models/Hex";
 import { HexUtils } from "../HexUtils";
 import { useLayoutContext } from "../Layout";
@@ -40,6 +41,7 @@ export type HexagonProps = {
   onDrop?: HexagonDragDropEventHandler<any, TargetProps>;
   onMouseOver?: HexagonMouseEventHandler;
   children?: React.ReactNode | React.ReactNode[];
+  playerIndex: number;
 };
 
 type TargetProps = {
@@ -106,9 +108,18 @@ export function Hexagon(
 
   const fillId = fill ? `url(#${fill})` : undefined;
   const draggable = { draggable: true } as any;
+
+  let color = "gray";
+  const playerColor = () => {
+    if (props.playerIndex === 0) color = "blue";
+    if (props.playerIndex === 1) color = "green";
+  };
+  playerColor();
+
   return (
     <g
       className={"hexagon-group"}
+      style={{ fill: color }}
       transform={`translate(${pixel.x}, ${pixel.y})`}
       {...rest}
       {...draggable}

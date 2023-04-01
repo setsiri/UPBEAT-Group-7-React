@@ -8,6 +8,7 @@ import {
   Text,
   HexUtils,
 } from "../grid";
+import region from "@/dataTypes/territory";
 
 function Test3(props: any) {
   /* console.log(props.territory); */
@@ -23,7 +24,7 @@ function Test3(props: any) {
   const axial_to_evenq = (hex: Hex) => {
     let col = hex.q;
     let row = hex.r + (hex.q + (hex.q & 1)) / 2;
-    return row + ", " + col;
+    return [row, col];
   };
 
   const grid = (m: number, n: number) => {
@@ -48,7 +49,51 @@ function Test3(props: any) {
     }
   };
 
-  grid(10, 10);
+  const deposit = (pos: number[]) => {
+    if (pos[0] < props.territory.length && pos[1] < props.territory[0].length) {
+      /* "cityCenter" */
+
+      if (props.territory[pos[0]][pos[1]] !== null) {
+        return (
+          <Text type={props.territory[pos[0]][pos[1]].type}>
+            {Math.floor(props.territory[pos[0]][pos[1]]?.deposit)}
+          </Text>
+        );
+      } else {
+        return <Text type={"empty"}>{""}</Text>;
+      }
+    }
+  };
+
+  const region = (hex: Hex, i: number) => {
+    let pos = axial_to_evenq(hex);
+    if (pos[0] < props.territory.length && pos[1] < props.territory[0].length) {
+      return (
+        <Hexagon
+          key={i}
+          q={hex.q}
+          r={hex.r}
+          s={hex.s}
+          playerIndex={props.territory[pos[0]][pos[1]]?.playerOwnerIndex}
+        >
+          {deposit(pos)}
+        </Hexagon>
+      );
+    } else {
+      return (
+        <Hexagon key={i} q={hex.q} r={hex.r} s={hex.s} playerIndex={-1}>
+          {deposit(pos)}
+        </Hexagon>
+      );
+    }
+  };
+
+  if (props.territory[0].length === 0) {
+    grid(10, 10);
+  } else {
+    grid(props.territory.length, props.territory[0].length);
+  }
+
   /** console.log(hexagons); */
 
   return (
@@ -60,11 +105,7 @@ function Test3(props: any) {
           spacing={1.0}
           origin={{ x: -50, y: -35 }}
         >
-          {hexagons.map((hex, i) => (
-            <Hexagon key={i} q={hex.q} r={hex.r} s={hex.s}>
-              <Text>{axial_to_evenq(hex)}</Text>
-            </Hexagon>
-          ))}
+          {hexagons.map((hex, i) => region(hex, i))}
         </Layout>
       </HexGrid>
     </div>
