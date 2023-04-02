@@ -9,6 +9,7 @@ import StatusDisplay from "@/components/StatusDisplsy";
 import { useDelay } from "react-use-precision-timer";
 import { useTimer } from "react-use-precision-timer";
 import Bganimation from "../../public/bganimation";
+import Router from "next/router";
 
 let client: Client;
 let body: any;
@@ -20,6 +21,7 @@ function TerritoryPage() {
   const [players, setPlayers] = useState([]);
   const [territory, setTerritory] = useState([[]]);
   const [speed, setSpeed] = useState(500);
+  const [isFrist, setIsFrist] = useState(true);
 
   const callback = () => {
     nextAction();
@@ -27,8 +29,16 @@ function TerritoryPage() {
   // The callback will be called every speed milliseconds.
   const timer = useTimer({ delay: speed }, callback);
 
+  const nextPlayer = useDelay(2000, () => {
+    nextTurn();
+    Router.push({
+      pathname: "/game_play/CurrentConstructionPlan",
+    });
+  });
+
   useEffect(() => {
-    if (!client) {
+    if (isFrist) {
+      setIsFrist(false);
       client = new Client({
         brokerURL: "ws://localhost:8080/demo-websocket",
         onConnect: () => {
@@ -79,17 +89,23 @@ function TerritoryPage() {
             setTerritory(result);
             /* console.log(territory); */
 
-            if (body["action"]["action"] === "done") {
+            if (body["status"] === "won") {
               timer.stop();
-              nextTurn();
-              timer.start();
+              Router.push({
+                pathname: "/game_play/FinishPage",
+              });
+            } else if (body["status"] === "done") {
+              timer.stop();
+              // next player
+              // go to page current player
+              nextPlayer.start();
             }
           });
         },
       });
       client.activate();
+      timer.start();
     }
-    timer.start();
   }, []);
 
   const nextAction = () => {
@@ -119,21 +135,23 @@ function TerritoryPage() {
       <div>
         {" "}
         <div className="ms-5 pt-4 position-relative">
-          {/*
-      <div className="d-flex gap-2 mx-5  text-black">
-        
+          {/*          
+          <div className="d-flex gap-2 mx-5  text-black">
+            
         <div className="  my-3 text-black">
           <button className="btn btn-secondary my-3">
             <Link href="/">back to homepage</Link>
           </button>
         </div>
-        
-        <div className="  my-3 text-black" onClick={nextAction}>
-          <button className="btn btn-danger my-3">next action</button>
-        </div>
-      </div>
-*/}
 
+            <div
+              className="  my-3 text-black"
+              onClick={() => nextPlayer.start()}
+            >
+              <button className="btn btn-danger my-3">next action</button>
+            </div>
+          </div>
+ */}
           <div
             className="d-flex gap-2 mx-5 my-5"
             style={{

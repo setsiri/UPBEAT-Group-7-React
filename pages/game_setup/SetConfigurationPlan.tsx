@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import { Ring } from "@uiball/loaders";
 import Router from "next/router";
+import { useDelay } from "react-use-precision-timer";
 
 let client: Client;
 
@@ -31,11 +32,6 @@ function SetConfigurationPlan() {
       pathname: "/",
     });
 
-  const handleClickSetConstructionPlanPlayer1 = () =>
-    Router.push({
-      pathname: "/game_setup/SetConstructionPlanPlayer1",
-    });
-
   useEffect(() => {
     if (isFrist) {
       setIsFrist(false);
@@ -47,8 +43,13 @@ function SetConfigurationPlan() {
     }
   }, []);
 
+  const handleClickSetConstructionPlanPlayer1 = useDelay(200, () => {
+    Router.push({
+      pathname: "/game_setup/SetConstructionPlanPlayer1",
+    });
+  });
+
   const onNext = () => {
-    handleClickSetConstructionPlanPlayer1();
     if (client) {
       if (client.connected) {
         client.publish({
@@ -69,6 +70,8 @@ function SetConfigurationPlan() {
         });
       }
     }
+
+    handleClickSetConstructionPlanPlayer1.start();
   };
 
   return (
