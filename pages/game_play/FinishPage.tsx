@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
 import Bganimation from "../../public/bganimation";
@@ -8,6 +8,14 @@ import Image from "next/image";
 import rb from "../../public/rb.js";
 
 function FinishPage() {
+  const [curPlayer, setCurPlayer] = useState(1);
+
+  const displayPlayer = () => {
+    if (curPlayer === 0) return "🧑🏻‍🌾";
+    else if (curPlayer === 1) return "🤴🏽";
+    else "";
+  };
+
   return (
     <AnimatePresence>
       {" "}
@@ -24,13 +32,7 @@ function FinishPage() {
           <div className=" text-center my-5 text-light p-5 ">
             <h4>Result of the game</h4>
 
-            <div className="my-3">
-              <Image
-                style={{ border: "6px outset " }}
-                src={catfunny}
-                alt={""}
-              />
-            </div>
+            <p style={{ fontSize: "200px" }}>{displayPlayer()}</p>
 
             <h1 className="animate-charcter">the winner is player 1 !!</h1>
 
