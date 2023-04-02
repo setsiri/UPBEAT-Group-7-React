@@ -14,16 +14,22 @@ let body: any;
 function CurrentConstructionPlan() {
   const [curPlayer, setCurPlayer] = useState(-1);
   const [isFrist, setIsFrist] = useState(true);
+  const [time, setTime] = useState(60);
+  const [isChangePlan, setIsChangePlan] = useState(false);
 
   const handleClickHomepage = () =>
     Router.push({
       pathname: "/",
     });
 
-  const handleClickUpdateConstructionPlan = () =>
-    Router.push({
-      pathname: "/game_play/UpdateConstructionPlan",
-    });
+  const handleClickUpdateConstructionPlan = () => {
+    if (time > 0 && !isChangePlan) {
+      setIsChangePlan(true);
+      Router.push({
+        pathname: "/game_play/UpdateConstructionPlan",
+      });
+    }
+  };
 
   const handleClickTerritoryPage = () =>
     Router.push({
@@ -41,12 +47,29 @@ function CurrentConstructionPlan() {
             setCurPlayer(body["index"]);
             /* console.log(body); */
           });
+
+          client.subscribe("/game/get/plan_rev_sec", (message) => {
+            const body = JSON.parse(message.body);
+            setTime(body);
+          });
+
+          getTime();
           wantData();
         },
       });
       client.activate();
     }
   }, []);
+
+  const getTime = () => {
+    if (client) {
+      if (client.connected) {
+        client.publish({
+          destination: "/player/get/plan_rev_sec",
+        });
+      }
+    }
+  };
 
   const wantData = () => {
     if (client) {
@@ -62,6 +85,13 @@ function CurrentConstructionPlan() {
     if (curPlayer === 0) return "🧑🏻‍🌾";
     else if (curPlayer === 1) return "🤴🏽";
     else "";
+  };
+
+  const displayTime = () => {
+    let min = Math.floor(time / 60);
+    let sec = time % 60;
+    if (sec < 10) return min + ":0" + sec;
+    else return min + ":" + sec;
   };
 
   return (
@@ -87,6 +117,7 @@ function CurrentConstructionPlan() {
 
             <p style={{ fontSize: "200px" }}>{displayPlayer()}</p>
             <h2 className="text-black my-3">Turn : Player {curPlayer + 1}</h2>
+            <h2 className="text-black my-3">Plan Rev Time : {displayTime()}</h2>
           </div>
 
           <div className="d-grid gap-2 d-md-flex justify-content-md-center my-3">

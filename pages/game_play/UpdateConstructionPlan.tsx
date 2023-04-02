@@ -12,7 +12,6 @@ import Router from "next/router";
 import { useDelay } from "react-use-precision-timer";
 
 let client: Client;
-let time: number;
 
 function UpdateConstructionPlan() {
   const [curPlan, setCurPlan] = useState("done");
@@ -22,6 +21,7 @@ function UpdateConstructionPlan() {
   const [isFrist, setIsFrist] = useState(true);
   const [countDown, setCountDown] = useState(<h5>⏳ : 0</h5>);
   const [isWait, setIsWait] = useState(true);
+  const [time, setTime] = useState(60);
 
   useEffect(() => {
     if (isFrist) {
@@ -51,9 +51,9 @@ function UpdateConstructionPlan() {
 
           client.subscribe("/game/get/plan_rev_sec", (message) => {
             const body = JSON.parse(message.body);
-            time = body;
-            console.log(body);
-            setCountDown(<CountDown seconds={time} />);
+            setTime(body);
+            // consoleDelay.start();
+            setCountDown(<CountDown seconds={body} setTimer={setTime} />);
           });
 
           getTime();
@@ -63,6 +63,19 @@ function UpdateConstructionPlan() {
       client.activate();
     }
   }, []);
+
+  const backPage = useDelay(200, () => {
+    Router.push({
+      pathname: "/game_play/CurrentConstructionPlan",
+    });
+  });
+
+  useEffect(() => {
+    if (time === 0) {
+      setTimer(0);
+      backPage.start();
+    }
+  }, [time]);
 
   const wantData = () => {
     if (client) {
@@ -88,10 +101,14 @@ function UpdateConstructionPlan() {
     }
   };
 
-  const nextPage = useDelay(100, () => {
+  const nextPage = useDelay(200, () => {
     Router.push({
       pathname: "/game_play/CurrentConstructionPlan",
     });
+  });
+
+  const consoleDelay = useDelay(100, () => {
+    console.log(time);
   });
 
   const onChange = () => {
@@ -105,6 +122,7 @@ function UpdateConstructionPlan() {
         });
       }
     }
+    delaySetTime.start();
     nextPage.start();
   };
 
@@ -117,6 +135,23 @@ function UpdateConstructionPlan() {
       }
     }
   };
+
+  const setTimer = (sec: number) => {
+    if (client) {
+      if (client.connected) {
+        client.publish({
+          destination: "/player/set/plan_rev_sec",
+          body: JSON.stringify({
+            sec: sec,
+          }),
+        });
+      }
+    }
+  };
+
+  const delaySetTime = useDelay(100, () => {
+    setTimer(time);
+  });
 
   //ของ code editor
   function handleEditorChange(newPlan: any, event: any) {
