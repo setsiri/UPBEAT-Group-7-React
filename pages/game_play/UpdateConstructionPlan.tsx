@@ -8,6 +8,8 @@ import Bganimation from "../../public/bganimation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Ring } from "@uiball/loaders";
 import CountDown from "../../components/CountDownTimer";
+import Router from "next/router";
+import { useDelay } from "react-use-precision-timer";
 
 let client: Client;
 let time: number;
@@ -86,6 +88,12 @@ function UpdateConstructionPlan() {
     }
   };
 
+  const nextPage = useDelay(100, () => {
+    Router.push({
+      pathname: "/game_play/CurrentConstructionPlan",
+    });
+  });
+
   const onChange = () => {
     if (client) {
       if (client.connected) {
@@ -97,6 +105,7 @@ function UpdateConstructionPlan() {
         });
       }
     }
+    nextPage.start();
   };
 
   const getTime = () => {
@@ -235,15 +244,13 @@ function UpdateConstructionPlan() {
               </button>
             </div>
             <div className="text-center">
-              <Link href="/game_play/CurrentConstructionPlan">
-                <button
-                  className="btn btn-primary"
-                  onClick={onChange}
-                  disabled={!isCorrectSyntax}
-                >
-                  finished changing
-                </button>
-              </Link>
+              <button
+                className="btn btn-primary"
+                onClick={onChange}
+                disabled={!isCorrectSyntax}
+              >
+                finished changing
+              </button>
             </div>
           </div>
         </div>
