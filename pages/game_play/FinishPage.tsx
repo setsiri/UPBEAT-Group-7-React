@@ -29,7 +29,7 @@ function FinishPage() {
         transition={{ duration: 0.75 }}
       >
         <div className="position-relative p-5 ">
-          <div className=" text-center my-5 text-light p-5 ">
+          <div className=" text-center  text-light p-5 ">
             <h4>Result of the game</h4>
 
             <p style={{ fontSize: "200px" }}>{displayPlayer()}</p>

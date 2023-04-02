@@ -8,6 +8,7 @@ import player from "@/dataTypes/player";
 import StatusDisplay from "@/components/StatusDisplsy";
 import { useDelay } from "react-use-precision-timer";
 import { useTimer } from "react-use-precision-timer";
+import Bganimation from "../../public/bganimation";
 
 let client: Client;
 let body: any;
@@ -112,8 +113,13 @@ function TerritoryPage() {
   };
 
   return (
-    <div className="ms-5 pt-4">
-      {/*
+    <div className=" position-fill ">
+      {" "}
+      <Bganimation />
+      <div>
+        {" "}
+        <div className="ms-5 pt-4 position-relative">
+          {/*
       <div className="d-flex gap-2 mx-5  text-black">
         
         <div className="  my-3 text-black">
@@ -128,49 +134,51 @@ function TerritoryPage() {
       </div>
 */}
 
-      <div
-        className="d-flex gap-2 mx-5 my-5"
-        style={{
-          display: "flex",
-          justifyContent: "left",
-          marginTop: "2rem",
-        }}
-      >
-        <div className="ms-5">
           <div
+            className="d-flex gap-2 mx-5 my-5"
             style={{
-              marginLeft: " 1rem",
-              marginRight: "1rem",
-              padding: "1rem",
-              backgroundColor: "white",
-              borderRadius: "1rem",
-              width: "28rem",
-              height: "19rem",
+              display: "flex",
+              justifyContent: "left",
+              marginTop: "2rem",
             }}
           >
-            <StatusDisplay
-              curPlayer={curPlayer}
-              status={status}
-              action={action}
-              players={players}
-            ></StatusDisplay>
-          </div>
+            <div className="ms-5">
+              <div
+                style={{
+                  marginLeft: " 1rem",
+                  marginRight: "1rem",
+                  padding: "1rem",
+                  backgroundColor: "white",
+                  borderRadius: "1rem",
+                  width: "28rem",
+                  height: "19rem",
+                }}
+              >
+                <StatusDisplay
+                  curPlayer={curPlayer}
+                  status={status}
+                  action={action}
+                  players={players}
+                ></StatusDisplay>
+              </div>
 
-          <div className="my-3 text-black text-center" onClick={nextTurn}>
-            <button
-              className="btn btn-danger my-3 fs-3"
-              style={{ width: "12rem", height: "4.5rem" }}
-            >
-              Done
-            </button>
+              <div className="my-3 text-black text-center" onClick={nextTurn}>
+                <button
+                  className="btn btn-danger my-3 fs-3"
+                  style={{ width: "12rem", height: "4.5rem" }}
+                >
+                  Done
+                </button>
+              </div>
+            </div>
+            <Test3
+              territory={territory}
+              players={players}
+              turn={curPlayer}
+              action={action}
+            ></Test3>
           </div>
         </div>
-        <Test3
-          territory={territory}
-          players={players}
-          turn={curPlayer}
-          action={action}
-        ></Test3>
       </div>
     </div>
   );
