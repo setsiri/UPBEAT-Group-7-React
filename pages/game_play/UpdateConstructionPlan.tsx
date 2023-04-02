@@ -279,7 +279,7 @@ function UpdateConstructionPlan() {
             <div className="d-grid gap-4 d-md-flex justify-content-md-center my-3">
               {" "}
               <button
-                className="btn btn-info my-3 fs-3"
+                className="btn btn-info fs-3"
                 style={{ width: "12rem", height: "4rem" }}
                 onClick={onCheck}
               >
