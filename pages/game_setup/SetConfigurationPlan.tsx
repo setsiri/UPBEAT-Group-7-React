@@ -24,6 +24,7 @@ function SetConfigurationPlan() {
   const [rev_cost, setRev_cost] = useState(100);
   const [max_dep, setMax_dep] = useState(1000000);
   const [interest_pct, setInterest_pct] = useState(5);
+  const [isFrist, setIsFrist] = useState(true);
 
   const handleClickHomepage = () =>
     Router.push({
@@ -36,7 +37,8 @@ function SetConfigurationPlan() {
     });
 
   useEffect(() => {
-    if (!client) {
+    if (isFrist) {
+      setIsFrist(false);
       client = new Client({
         brokerURL: "ws://localhost:8080/demo-websocket",
         onConnect: () => {},

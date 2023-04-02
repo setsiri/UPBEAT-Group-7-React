@@ -11,7 +11,6 @@ import { Ring } from "@uiball/loaders";
 import Router from "next/router";
 
 let client: Client;
-let time: number;
 
 function SetConstructionPlanPlayer2() {
   const [plan2, setPlan2] = useState(
@@ -21,6 +20,7 @@ function SetConstructionPlanPlayer2() {
   const [isFrist, setIsFrist] = useState(true);
   const [countDown, setCountDown] = useState(<h5>⏳ : 0</h5>);
   const [isWait, setIsWait] = useState(true);
+  const [time, setTime] = useState(5);
 
   const handleClickHomepage = () =>
     Router.push({
@@ -33,8 +33,9 @@ function SetConstructionPlanPlayer2() {
     });
 
   useEffect(() => {
-    setIsCorrectSyntax(false);
-    if (!client) {
+    if (isFrist) {
+      setIsFrist(false);
+      setIsCorrectSyntax(false);
       client = new Client({
         brokerURL: "ws://localhost:8080/demo-websocket",
         onConnect: () => {
@@ -43,27 +44,32 @@ function SetConstructionPlanPlayer2() {
             setIsWait(false);
             setIsCorrectSyntax(body);
             /* console.log(body); */
-            if (body) {
-              sendPlan();
-            }
           });
 
           client.subscribe("/game/get/init_plan_sec", (message) => {
             const body = JSON.parse(message.body);
-            time = body;
-            console.log(body);
-            setCountDown(<CountDown seconds={time} />);
+            setTime(body);
+            // console.log(body);
+            setCountDown(<CountDown seconds={body} setTimer={setTime} />);
           });
+
+          sendPlan();
           getTime();
         },
       });
-
       client.activate();
-    } else if (isFrist) {
-      setIsFrist(false);
-      getTime();
     }
   }, []);
+
+  const nextPage = useDelay(100, () => {
+    onStart();
+  });
+
+  useEffect(() => {
+    if (time === 0) {
+      nextPage.start();
+    }
+  }, [time]);
 
   function displayState() {
     if (isWait) {
