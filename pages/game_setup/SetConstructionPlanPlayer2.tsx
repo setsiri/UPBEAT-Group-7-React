@@ -160,7 +160,7 @@ function SetConstructionPlanPlayer2() {
         >
           <button
             className="btn btn-secondary"
-            onClick={() => handleClickHowtoPlay()}
+            onClick={() => handleClickHomepage()}
           >
             back to homepage
           </button>
@@ -224,16 +224,16 @@ function SetConstructionPlanPlayer2() {
             >
               check
             </button>
-            <Link href="/game_play/CurrentConstructionPlan" onClick={onStart}>
-              <button
-                type="button"
-                className="btn btn-primary"
-                style={{ width: "10rem" }}
-                disabled={!isCorrectSyntax}
-              >
-                Start
-              </button>
-            </Link>
+
+            <button
+              type="button"
+              className="btn btn-primary"
+              style={{ width: "10rem" }}
+              disabled={!isCorrectSyntax}
+              onClick={onStart}
+            >
+              Start
+            </button>
           </div>
         </div>
       </motion.div>
