@@ -12,9 +12,21 @@ import Bganimation from "../public/bganimation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import { result, setResult } from "../dataTypes/configulation";
+import Router from "next/router";
 
 export default function Home() {
   const router = useRouter();
+
+  const handleClickHowtoPlay = () =>
+    Router.push({
+      pathname: "/HowtoPlay",
+    });
+
+  const handleClickSetConfigurationPlan = () =>
+    Router.push({
+      pathname: "/game_setup/SetConfigurationPlan",
+    });
+
   return (
     <AnimatePresence>
       <div className=" position-fill ">
@@ -51,12 +63,19 @@ export default function Home() {
             <h3 color="dark">Homepage</h3>
           </div>
           <div className="d-grid gap-2 col-1 mx-auto ">
-            <Link href="/HowtoPlay">
-              <button className="btn btn-primary">how to play</button>
-            </Link>
-            <Link href="/game_setup/SetConfigurationPlan">
-              <button className="btn btn-primary">start game</button>
-            </Link>
+            <button
+              className="btn btn-primary"
+              onClick={() => handleClickHowtoPlay()}
+            >
+              how to play
+            </button>
+
+            <button
+              className="btn btn-primary"
+              onClick={() => handleClickSetConfigurationPlan()}
+            >
+              start game
+            </button>
           </div>
         </div>
       </motion.div>
