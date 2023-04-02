@@ -85,13 +85,13 @@ function SetConstructionPlanPlayer2() {
       if (isCorrectSyntax) {
         return (
           <div className="text-light fs-4">
-            state : correct syntax <i className="bi bi-check-circle-fill"></i>
+            state : correct syntax <i className="bi bi-patch-check"></i>
           </div>
         );
       } else {
         return (
           <div className="text-light fs-4">
-            state : incorrect syntax <i className="">x</i>
+            state : incorrect syntax <i className="bi bi-patch-exclamation"></i>
           </div>
         );
       }
