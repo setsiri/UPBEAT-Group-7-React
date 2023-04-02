@@ -132,7 +132,7 @@ function SetConfigurationPlan() {
               ></input>
             </div>
             <div className="input-group">
-              <span className="input-group-text">init_plan_min</span>
+              <span className="input-group-text">Planning Time (min)</span>
               <input
                 type="number"
                 min="0"
@@ -151,7 +151,7 @@ function SetConfigurationPlan() {
               ></input>
             </div>
             <div className="input-group">
-              <span className="input-group-text">init_plan_sec</span>
+              <span className="input-group-text">Plannig Time (sec)</span>
               <input
                 type="number"
                 min="0"
@@ -170,7 +170,7 @@ function SetConfigurationPlan() {
               ></input>
             </div>
             <div className="input-group">
-              <span className="input-group-text">init_budget</span>
+              <span className="input-group-text">Amount Of Budget</span>
               <input
                 type="number"
                 min="0"
@@ -189,7 +189,9 @@ function SetConfigurationPlan() {
               ></input>
             </div>
             <div className="input-group">
-              <span className="input-group-text">init_center_dep</span>
+              <span className="input-group-text">
+                Amount Of Center Deposite
+              </span>
               <input
                 type="number"
                 min="0"
@@ -208,7 +210,7 @@ function SetConfigurationPlan() {
               ></input>
             </div>
             <div className="input-group">
-              <span className="input-group-text">plan_rev_min</span>
+              <span className="input-group-text">RevisePlan Time (min)</span>
               <input
                 type="number"
                 min="0"
@@ -226,7 +228,7 @@ function SetConfigurationPlan() {
               ></input>
             </div>
             <div className="input-group">
-              <span className="input-group-text">plan_rev_sec</span>
+              <span className="input-group-text">RevisePlan Time (sec)</span>
               <input
                 type="number"
                 min="0"
@@ -244,7 +246,7 @@ function SetConfigurationPlan() {
               ></input>
             </div>
             <div className="input-group">
-              <span className="input-group-text">rev_cost</span>
+              <span className="input-group-text">Revise Cost</span>
               <input
                 type="number"
                 min="0"
@@ -263,7 +265,7 @@ function SetConfigurationPlan() {
               ></input>
             </div>
             <div className="input-group">
-              <span className="input-group-text">max_dep</span>
+              <span className="input-group-text">Max Deposit Per Region</span>
               <input
                 type="number"
                 min="0"
@@ -282,7 +284,7 @@ function SetConfigurationPlan() {
               ></input>
             </div>
             <div className="input-group">
-              <span className="input-group-text">interest_pct</span>
+              <span className="input-group-text">Interest Rate %</span>
               <input
                 type="number"
                 min="0"
