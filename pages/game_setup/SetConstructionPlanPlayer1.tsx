@@ -23,6 +23,7 @@ function SetConstructionPlanPlayer1() {
   const [isCorrectSyntax, setIsCorrectSyntax] = useState(false);
   const [isFrist, setIsFrist] = useState(true);
   const [countDown, setCountDown] = useState(<h5>⏳ : 0</h5>);
+  const [isWait, setIsWait] = useState(true);
 
   const handleClickHomepage = () =>
     Router.push({
@@ -35,13 +36,14 @@ function SetConstructionPlanPlayer1() {
     });
 
   useEffect(() => {
-    setIsCorrectSyntax(true);
+    setIsCorrectSyntax(false);
     if (!client) {
       client = new Client({
         brokerURL: "ws://localhost:8080/demo-websocket",
         onConnect: () => {
           client.subscribe("/game/get/checkSyntax", (message) => {
             const body = JSON.parse(message.body);
+            setIsWait(false);
             setIsCorrectSyntax(body);
             /* console.log(body); */
           });
@@ -62,27 +64,28 @@ function SetConstructionPlanPlayer1() {
     }
   }, []);
 
-  function displayState(input) {
-    if (input == "onGoing") {
+  function displayState() {
+    if (isWait) {
       return (
         <div>
-          state : computing{" "}
+          state : waiting{" "}
           <Ring size={22} lineWeight={5} speed={2} color="black" />
         </div>
       );
-    } else if (input == "finsih") {
-      return (
-        <div>
-          compute finished <i className="bi bi-check-circle-fill"></i>
-        </div>
-      );
-    } else if (input == "error") {
-      return (
-        <div>
-          syntax error please check again{" "}
-          <i className="bi bi-emoji-frown-fill"></i>
-        </div>
-      );
+    } else {
+      if (isCorrectSyntax) {
+        return (
+          <div>
+            state : correct syntax <i className="bi bi-check-circle-fill"></i>
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            state : incorrect syntax <i className="">x</i>
+          </div>
+        );
+      }
     }
   }
 
@@ -127,8 +130,9 @@ function SetConstructionPlanPlayer1() {
   //ของ code editor
   function handleEditorChange(plan1: any, event: any) {
     setPlan1(plan1);
-    console.log("here is the current plan1:", plan1);
-    // setIsCorrectSyntax(false);
+    /* console.log("here is the current plan1:", plan1); */
+    setIsCorrectSyntax(false);
+    setIsWait(true);
   }
 
   return (
@@ -188,7 +192,7 @@ function SetConstructionPlanPlayer1() {
               className="text-black  mt-2 mb-3"
               style={{ marginRight: "100px" }}
             >
-              {displayState("onGoing")}
+              {displayState()}
             </h5>
             {countDown}
           </div>

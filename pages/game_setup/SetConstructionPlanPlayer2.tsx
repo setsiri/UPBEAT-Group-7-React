@@ -20,6 +20,7 @@ function SetConstructionPlanPlayer2() {
   const [isCorrectSyntax, setIsCorrectSyntax] = useState(false);
   const [isFrist, setIsFrist] = useState(true);
   const [countDown, setCountDown] = useState(<h5>⏳ : 0</h5>);
+  const [isWait, setIsWait] = useState(true);
 
   const handleClickHomepage = () =>
     Router.push({
@@ -32,18 +33,18 @@ function SetConstructionPlanPlayer2() {
     });
 
   useEffect(() => {
-    setIsCorrectSyntax(true);
+    setIsCorrectSyntax(false);
     if (!client) {
       client = new Client({
         brokerURL: "ws://localhost:8080/demo-websocket",
         onConnect: () => {
           client.subscribe("/game/get/checkSyntax", (message) => {
             const body = JSON.parse(message.body);
+            setIsWait(false);
             setIsCorrectSyntax(body);
             /* console.log(body); */
             if (body) {
               sendPlan();
-              onceTimer.start();
             }
           });
 
@@ -64,27 +65,28 @@ function SetConstructionPlanPlayer2() {
     }
   }, []);
 
-  function displayState(input) {
-    if (input == "onGoing") {
+  function displayState() {
+    if (isWait) {
       return (
         <div>
-          state : computing{" "}
+          state : waiting{" "}
           <Ring size={22} lineWeight={5} speed={2} color="black" />
         </div>
       );
-    } else if (input == "finsih") {
-      return (
-        <div>
-          compute finished <i className="bi bi-check-circle-fill"></i>
-        </div>
-      );
-    } else if (input == "error") {
-      return (
-        <div>
-          syntax error please check again{" "}
-          <i className="bi bi-emoji-frown-fill"></i>
-        </div>
-      );
+    } else {
+      if (isCorrectSyntax) {
+        return (
+          <div>
+            state : correct syntax <i className="bi bi-check-circle-fill"></i>
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            state : incorrect syntax <i className="">x</i>
+          </div>
+        );
+      }
     }
   }
 
@@ -111,10 +113,8 @@ function SetConstructionPlanPlayer2() {
     }
   };
 
-  const onceTimer = useDelay(50, () => {
-    client.publish({
-      destination: "/player/start",
-    });
+  const nexPage = useDelay(100, () => {
+    handleClickCurrentConstructionPlan();
   });
 
   const sendPlan = () => {
@@ -132,15 +132,23 @@ function SetConstructionPlanPlayer2() {
   };
 
   const onStart = () => {
-    /* onceTimer.start(); */
-    handleClickCurrentConstructionPlan();
+    if (client) {
+      if (client.connected) {
+        client.publish({
+          destination: "/player/start",
+        });
+      }
+    }
+
+    nexPage.start();
   };
 
   //ของ code editor
   function handleEditorChange(plan2: any, event: any) {
     setPlan2(plan2);
-    console.log("here is the current plan2:", plan2);
-    // setIsCorrectSyntax(false);
+    /* console.log("here is the current plan2:", plan2); */
+    setIsCorrectSyntax(false);
+    setIsWait(true);
   }
 
   return (
@@ -200,7 +208,7 @@ function SetConstructionPlanPlayer2() {
               className="text-black mt-2 mb-3"
               style={{ marginRight: "100px" }}
             >
-              {displayState("onGoing")}
+              {displayState()}
             </h5>
             {countDown}
           </div>
