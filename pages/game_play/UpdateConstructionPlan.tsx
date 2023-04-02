@@ -19,7 +19,9 @@ function UpdateConstructionPlan() {
   const [curPlayer, setCurPlayer] = useState(1);
   const [isCorrectSyntax, setIsCorrectSyntax] = useState(false);
   const [isFrist, setIsFrist] = useState(true);
-  const [countDown, setCountDown] = useState(<h5>⏳ : 0</h5>);
+  const [countDown, setCountDown] = useState(
+    <h5 className="text-light fs-4">⏳ : 0</h5>
+  );
   const [isWait, setIsWait] = useState(true);
   const [time, setTime] = useState(60);
 
@@ -164,21 +166,21 @@ function UpdateConstructionPlan() {
   function displayState() {
     if (isWait) {
       return (
-        <div>
+        <div className="text-light fs-4">
           state : waiting{" "}
-          <Ring size={22} lineWeight={5} speed={2} color="black" />
+          <Ring size={22} lineWeight={5} speed={2} color="white" />
         </div>
       );
     } else {
       if (isCorrectSyntax) {
         return (
-          <div>
+          <div className="text-light fs-4">
             state : correct syntax <i className="bi bi-check-circle-fill"></i>
           </div>
         );
       } else {
         return (
-          <div>
+          <div className="text-light fs-4">
             state : incorrect syntax <i className="">x</i>
           </div>
         );
@@ -198,7 +200,7 @@ function UpdateConstructionPlan() {
         transition={{ duration: 0.75 }}
       >
         <div className=" position-relative">
-          <h2 className="my-5 text-center text-black">
+          <h2 className="my-5 text-center text-light">
             Update Construction Plan : Player {curPlayer + 1}
           </h2>
 
@@ -207,7 +209,9 @@ function UpdateConstructionPlan() {
             style={{ display: "flex", justifyContent: "center" }}
           >
             <div>
-              <h5 className="mx-5">Current ContructionPlan "Read only" </h5>
+              <h4 className="mx-5 text-light">
+                Current ContructionPlan "Read only"{" "}
+              </h4>
               <div
                 style={{ display: "flex", justifyContent: "center" }}
                 className="my-1"
@@ -223,7 +227,7 @@ function UpdateConstructionPlan() {
                       options={{
                         readOnly: true,
                         scrollBeyondLastLine: false,
-                        fontSize: "17px",
+                        fontSize: "19px",
                       }}
                     />
                   </div>
@@ -232,7 +236,7 @@ function UpdateConstructionPlan() {
             </div>
 
             <div>
-              <h5 className="mx-5">New ContructionPlan "Editor"</h5>
+              <h4 className="mx-5 text-light">New ContructionPlan "Editor"</h4>
               <div
                 style={{ display: "flex", justifyContent: "center" }}
                 className="my-1"
@@ -245,7 +249,7 @@ function UpdateConstructionPlan() {
                       language="java"
                       options={{
                         scrollBeyondLastLine: false,
-                        fontSize: "17px",
+                        fontSize: "19px",
                       }}
                       value={newPlan}
                       onChange={handleEditorChange}
@@ -265,27 +269,32 @@ function UpdateConstructionPlan() {
               }}
             >
               <h5
-                className="text-black  mt-2 mb-3"
+                className="text-black  mt-2 mb-3 "
                 style={{ marginRight: "100px" }}
               >
                 {displayState()}
               </h5>
               {countDown}
             </div>
-
-            <div className="text-center">
-              <button className="btn btn-info my-3" onClick={onCheck}>
-                check
-              </button>
-            </div>
-            <div className="text-center">
+            <div className="d-grid gap-4 d-md-flex justify-content-md-center my-3">
+              {" "}
               <button
-                className="btn btn-primary"
+                className="btn btn-info my-3 fs-3"
+                style={{ width: "12rem", height: "4rem" }}
+                onClick={onCheck}
+              >
+                check
+              </button>{" "}
+              <button
+                className="btn btn-primary fs-3"
                 onClick={onChange}
+                style={{ width: "16rem", height: "4rem" }}
                 disabled={!isCorrectSyntax}
               >
                 finished changing
               </button>
+              <div className="text-center"></div>
+              <div className="text-center"></div>
             </div>
           </div>
         </div>

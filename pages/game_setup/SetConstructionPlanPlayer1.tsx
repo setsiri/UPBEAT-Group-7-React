@@ -230,7 +230,6 @@ function SetConstructionPlanPlayer1() {
             <button
               className="btn btn-info me-4 fs-3"
               style={{ width: "12rem", height: "4rem" }}
-              style={{ width: "10rem" }}
               onClick={onCheck}
             >
               check
@@ -240,7 +239,6 @@ function SetConstructionPlanPlayer1() {
               type="button"
               className="btn btn-primary fs-3"
               style={{ width: "12rem", height: "4rem" }}
-              style={{ width: "10rem" }}
               onClick={onNext}
               disabled={!isCorrectSyntax}
             >
