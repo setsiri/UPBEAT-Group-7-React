@@ -10,15 +10,20 @@ import { Ring } from "@uiball/loaders";
 import CountDown from "../../components/CountDownTimer";
 
 let client: Client;
+let time: number;
 
 function UpdateConstructionPlan() {
   const [curPlan, setCurPlan] = useState("done");
   const [newPlan, setNewPlan] = useState("done \ndone \ndone");
   const [curPlayer, setCurPlayer] = useState(1);
   const [isCorrectSyntax, setIsCorrectSyntax] = useState(false);
+  const [isFrist, setIsFrist] = useState(true);
+  const [countDown, setCountDown] = useState(<h5>⏳ : 0</h5>);
+  const [isWait, setIsWait] = useState(true);
 
   useEffect(() => {
-    if (!client) {
+    if (isFrist) {
+      setIsFrist(false);
       setIsCorrectSyntax(false);
       client = new Client({
         brokerURL: "ws://localhost:8080/demo-websocket",
@@ -33,8 +38,8 @@ function UpdateConstructionPlan() {
 
           client.subscribe("/game/get/checkSyntax", (message) => {
             const body = JSON.parse(message.body);
+            setIsWait(false);
             setIsCorrectSyntax(body);
-            console.log(body);
           });
 
           client.subscribe("/game/get/changePlan", (message) => {
@@ -42,6 +47,14 @@ function UpdateConstructionPlan() {
             console.log(body);
           });
 
+          client.subscribe("/game/get/plan_rev_sec", (message) => {
+            const body = JSON.parse(message.body);
+            time = body;
+            console.log(body);
+            setCountDown(<CountDown seconds={time} />);
+          });
+
+          getTime();
           wantData();
         },
       });
@@ -52,7 +65,7 @@ function UpdateConstructionPlan() {
   const wantData = () => {
     if (client) {
       if (client.connected) {
-        console.log("wantData");
+        // console.log("wantData");
         client.publish({
           destination: "/player/want/data",
         });
@@ -86,11 +99,47 @@ function UpdateConstructionPlan() {
     }
   };
 
+  const getTime = () => {
+    if (client) {
+      if (client.connected) {
+        client.publish({
+          destination: "/player/get/plan_rev_sec",
+        });
+      }
+    }
+  };
+
   //ของ code editor
   function handleEditorChange(newPlan: any, event: any) {
     setNewPlan(newPlan);
-    console.log("here is the current newPlan:", newPlan);
-    // setIsCorrectSyntax(false);
+    // console.log("here is the current newPlan:", newPlan);
+    setIsCorrectSyntax(false);
+    setIsWait(true);
+  }
+
+  function displayState() {
+    if (isWait) {
+      return (
+        <div>
+          state : waiting{" "}
+          <Ring size={22} lineWeight={5} speed={2} color="black" />
+        </div>
+      );
+    } else {
+      if (isCorrectSyntax) {
+        return (
+          <div>
+            state : correct syntax <i className="bi bi-check-circle-fill"></i>
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            state : incorrect syntax <i className="">x</i>
+          </div>
+        );
+      }
+    }
   }
 
   return (
@@ -106,7 +155,7 @@ function UpdateConstructionPlan() {
       >
         <div className=" position-relative">
           <h2 className="my-5 text-center text-black">
-            Update ConstructionPlan : Player {curPlayer}
+            Update Construction Plan : Player {curPlayer + 1}
           </h2>
 
           <div
@@ -138,16 +187,6 @@ function UpdateConstructionPlan() {
               </div>
             </div>
 
-            {/* <div>
-        <textarea
-          rows={22}
-          cols={100}
-          value={curPlan}
-          onChange={() => {}}
-        ></textarea>
-      </div>
-      */}
-
             <div>
               <h5 className="mx-5">New ContructionPlan "Editor"</h5>
               <div
@@ -173,52 +212,43 @@ function UpdateConstructionPlan() {
             </div>
           </div>
 
-          {/*  <div>
-        <textarea
-          rows={22}
-          cols={100}
-          value={newPlan}
-          onChange={(event) => {
-            setNewPlan(event.target.value);
-            setIsCorrectSyntax(false);
-          }}
-        ></textarea>
-      </div> */}
+          <div className="text-center my-3 text-black">
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <h5
+                className="text-black  mt-2 mb-3"
+                style={{ marginRight: "100px" }}
+              >
+                {displayState()}
+              </h5>
+              {countDown}
+            </div>
 
-    <div className="text-center my-3 text-black">
-
-    <h5 className="text-black my-4">
-        state : computing <Ring 
- size={22}
- lineWeight={5}
- speed={2} 
- color="black" 
-/> / compute
-        finished <i className="bi bi-check-circle-fill"></i> / syntax error
-        please check again <i className="bi bi-emoji-frown-fill"></i>  </h5>
-
-      <div className="text-center">
-        <button className="btn btn-info my-3" onClick={onCheck}>
-          check
-        </button>
-      </div>
-      <div className="text-center">
-        <Link href="/game_play/CurrentConstructionPlan">
-          <button
-            className="btn btn-primary"
-            onClick={onChange}
-            disabled={!isCorrectSyntax}
-          >
-            finished changing
-          </button>
-        </Link>
-      </div>
-    </div></div></motion.div></AnimatePresence>
-
-
-
-   
-   
+            <div className="text-center">
+              <button className="btn btn-info my-3" onClick={onCheck}>
+                check
+              </button>
+            </div>
+            <div className="text-center">
+              <Link href="/game_play/CurrentConstructionPlan">
+                <button
+                  className="btn btn-primary"
+                  onClick={onChange}
+                  disabled={!isCorrectSyntax}
+                >
+                  finished changing
+                </button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 

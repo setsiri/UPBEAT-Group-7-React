@@ -5,15 +5,15 @@ import { Client } from "@stomp/stompjs";
 import { useDelay } from "react-use-precision-timer";
 import Editor, { Monaco } from "@monaco-editor/react";
 import Bganimation from "../../public/bganimation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, delay } from "framer-motion";
 import Router from "next/router";
 
 let client: Client;
 let body: any;
 
 function CurrentConstructionPlan() {
-  const [curPlan, setCurPlan] = useState("");
-  const [curPlayer, setCurPlayer] = useState(0);
+  const [curPlayer, setCurPlayer] = useState(-1);
+  const [isFrist, setIsFrist] = useState(true);
 
   const handleClickHomepage = () =>
     Router.push({
@@ -31,22 +31,19 @@ function CurrentConstructionPlan() {
     });
 
   useEffect(() => {
-    if (!client) {
+    if (isFrist) {
+      setIsFrist(false);
       client = new Client({
         brokerURL: "ws://localhost:8080/demo-websocket",
         onConnect: () => {
           client.subscribe("/game/get/data", (message) => {
-            /* console.log("get message"); */
             body = JSON.parse(message.body);
             setCurPlayer(body["index"]);
-            setCurPlan(body["configurationPlan"]);
-            console.log(curPlan);
+            /* console.log(body); */
           });
-          /* console.log("sub"); */
           wantData();
         },
       });
-      /* console.log("activate"); */
       client.activate();
     }
   }, []);
@@ -54,7 +51,6 @@ function CurrentConstructionPlan() {
   const wantData = () => {
     if (client) {
       if (client.connected) {
-        console.log("wantData");
         client.publish({
           destination: "/player/want/data",
         });
@@ -62,14 +58,11 @@ function CurrentConstructionPlan() {
     }
   };
 
-  console.log("send message");
-
-  //ของ code editor
-  function handleEditorChange(curPlan: any, event: any) {
-    setCurPlan(curPlan);
-    console.log("here is the current curPlan:", curPlan);
-    // setIsCorrectSyntax(false);
-  }
+  const displayPlayer = () => {
+    if (curPlayer === 0) return "🧑🏻‍🌾";
+    else if (curPlayer === 1) return "🤴🏽";
+    else "";
+  };
 
   return (
     <AnimatePresence>
@@ -92,30 +85,8 @@ function CurrentConstructionPlan() {
               back to homepage
             </button>
 
-            <h2 className="text-black my-3">
-              Current ConstructionPlan : Player {curPlayer}
-            </h2>
-          </div>
-
-          <div
-            style={{ display: "flex", justifyContent: "center" }}
-            className="my-3"
-          >
-            <div style={{ border: "6px outset " }}>
-              <div style={{ border: "3px inset " }}>
-                <Editor
-                  height="60vh"
-                  width="115vh"
-                  language="java"
-                  options={{
-                    scrollBeyondLastLine: false,
-                    fontSize: "17px",
-                  }}
-                  defaultValue={curPlan}
-                  onChange={handleEditorChange}
-                />
-              </div>
-            </div>
+            <p style={{ fontSize: "200px" }}>{displayPlayer()}</p>
+            <h2 className="text-black my-3">Turn : Player {curPlayer + 1}</h2>
           </div>
 
           <div className="d-grid gap-2 d-md-flex justify-content-md-center my-3">
@@ -131,7 +102,7 @@ function CurrentConstructionPlan() {
               className="btn btn-primary"
               onClick={() => handleClickTerritoryPage()}
             >
-              Start
+              Play
             </button>
           </div>
         </div>
