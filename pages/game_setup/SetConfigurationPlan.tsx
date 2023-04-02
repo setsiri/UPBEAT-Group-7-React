@@ -282,7 +282,8 @@ function SetConfigurationPlan() {
                   //setInterest_pct(Number.parseInt(Number(event.target.value)));
                 }}
               ></input>
-            </div>{" "}
+            </div>
+            {/* 
             <h5 className="text-black my-4">
               state : computing{" "}
               <Ring size={22} lineWeight={5} speed={2} color="black" /> /
@@ -290,6 +291,8 @@ function SetConfigurationPlan() {
               syntax error please check again{" "}
               <i className="bi bi-emoji-frown-fill"></i>{" "}
             </h5>
+            */}
+            <h5></h5>
           </div>
 
           <div className="text-center">
