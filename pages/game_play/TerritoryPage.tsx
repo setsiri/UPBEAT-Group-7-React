@@ -18,7 +18,7 @@ function TerritoryPage() {
   const [action, setAction] = useState(null);
   const [players, setPlayers] = useState([]);
   const [territory, setTerritory] = useState([[]]);
-  const [speed, setSpeed] = useState(1000);
+  const [speed, setSpeed] = useState(500);
 
   const callback = () => {
     nextAction();
@@ -112,48 +112,58 @@ function TerritoryPage() {
   };
 
   return (
-    <div>
+    <div className="ms-5 pt-4">
+      {/*
       <div className="d-flex gap-2 mx-5  text-black">
+        
         <div className="  my-3 text-black">
           <button className="btn btn-secondary my-3">
             <Link href="/">back to homepage</Link>
           </button>
         </div>
+        
         <div className="  my-3 text-black" onClick={nextAction}>
           <button className="btn btn-danger my-3">next action</button>
         </div>
-        <div className="  my-3 text-black" onClick={nextTurn}>
-          <button className="btn btn-danger my-3">Done</button>
-        </div>
       </div>
+*/}
 
-      <h2 className="d-grid gap-2 mx-5 my-2  text-black">
-        Territory : Player {curPlayer + 1}
-      </h2>
       <div
+        className="d-flex gap-2 mx-5 my-5"
         style={{
           display: "flex",
           justifyContent: "left",
           marginTop: "2rem",
         }}
       >
-        <div
-          style={{
-            marginLeft: " 1rem",
-            marginRight: "1rem",
-            padding: "1rem",
-            backgroundColor: "white",
-            borderRadius: "1rem",
-            width: "25rem",
-            height: "45rem",
-          }}
-        >
-          <StatusDisplay
-            curPlayer={curPlayer}
-            status={status}
-            action={action}
-            players={players}
-          ></StatusDisplay>
+        <div className="ms-5">
+          <div
+            style={{
+              marginLeft: " 1rem",
+              marginRight: "1rem",
+              padding: "1rem",
+              backgroundColor: "white",
+              borderRadius: "1rem",
+              width: "28rem",
+              height: "19rem",
+            }}
+          >
+            <StatusDisplay
+              curPlayer={curPlayer}
+              status={status}
+              action={action}
+              players={players}
+            ></StatusDisplay>
+          </div>
+
+          <div className="my-3 text-black text-center" onClick={nextTurn}>
+            <button
+              className="btn btn-danger my-3 fs-3"
+              style={{ width: "12rem", height: "4.5rem" }}
+            >
+              Done
+            </button>
+          </div>
         </div>
         <Test3
           territory={territory}

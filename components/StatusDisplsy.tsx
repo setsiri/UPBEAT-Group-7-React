@@ -2,7 +2,19 @@ import React from "react";
 
 function StatusDisplay(props: any) {
   return (
-    <div className="">
+    <div className="p-4 mt-3 d-grid gap-3 text-center">
+      <div className="text-warning-emphasis">
+        <h2 className="fs-1">Turn : Player {props?.curPlayer + 1}</h2>
+      </div>
+      <div className="text-danger-emphasis">
+        <h2 className="fs-1">Action : {props.action?.action}</h2>
+      </div>
+      <div className="text-success-emphasis">
+        <h2 className="fs-1">
+          Budget : {props.players[props?.curPlayer]?.budget}
+        </h2>
+      </div>
+      {/*
       <div className="text-warning-emphasis">
         <h2>current player index : {props?.curPlayer}</h2>
         <h2>game status : {props?.status}</h2>
@@ -40,6 +52,7 @@ function StatusDisplay(props: any) {
         </h2>
         <h2>status : {props.players[1]?.status}</h2>
       </div>
+      */}
     </div>
   );
 }
