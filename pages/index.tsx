@@ -59,19 +59,21 @@ export default function Home() {
             <Image src={mypic2} alt={""} />
           </div>
 
-          <div className="text-center my-4 text-black ">
-            <h3 color="dark">Homepage</h3>
+          <div className="text-center my-4 text-light">
+            <h1 color="dark">Homepage</h1>
           </div>
-          <div className="d-grid gap-2 col-1 mx-auto ">
+          <div className="d-grid gap-3 justify-content-center">
             <button
-              className="btn btn-primary btn-lg"
+              className="btn btn-primary btn-lg fs-3"
+              style={{ width: "12rem", height: "4rem" }}
               onClick={() => handleClickHowtoPlay()}
             >
               how to play
             </button>
 
             <button
-              className="btn btn-primary btn-lg"
+              className="btn btn-primary btn-lg fs-3"
+              style={{ width: "12rem", height: "4rem" }}
               onClick={() => handleClickSetConfigurationPlan()}
             >
               start game

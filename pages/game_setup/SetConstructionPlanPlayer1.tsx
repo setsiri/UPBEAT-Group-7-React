@@ -21,7 +21,9 @@ function SetConstructionPlanPlayer1() {
   );
   const [isCorrectSyntax, setIsCorrectSyntax] = useState(false);
   const [isFrist, setIsFrist] = useState(true);
-  const [countDown, setCountDown] = useState(<h5>⏳ : 0</h5>);
+  const [countDown, setCountDown] = useState(
+    <h5 className="text-light fs-4">⏳ : 0</h5>
+  );
   const [isWait, setIsWait] = useState(true);
   const [time, setTime] = useState(5);
 
@@ -83,22 +85,22 @@ function SetConstructionPlanPlayer1() {
   function displayState() {
     if (isWait) {
       return (
-        <div>
+        <div className="text-light fs-4">
           state : waiting{" "}
-          <Ring size={22} lineWeight={5} speed={2} color="black" />
+          <Ring size={22} lineWeight={5} speed={2} color="white" />
         </div>
       );
     } else {
       if (isCorrectSyntax) {
         return (
-          <div>
-            state : correct syntax <i className="bi bi-check-circle-fill"></i>
+          <div className="text-light fs-4">
+            state : correct syntax <i className="bi bi-patch-check"></i>
           </div>
         );
       } else {
         return (
-          <div>
-            state : incorrect syntax <i className="">x</i>
+          <div className="text-light fs-4">
+            state : incorrect syntax <i className="bi bi-patch-exclamation"></i>
           </div>
         );
       }
@@ -177,13 +179,14 @@ function SetConstructionPlanPlayer1() {
           style={{ marginTop: "1rem" }}
         >
           <button
-            className="btn btn-secondary"
+            className="btn btn-secondary fs-5"
+            style={{ width: "12rem", height: "3rem" }}
             onClick={() => handleClickHomepage()}
           >
             back to homepage
           </button>
 
-          <h2 className="text-black my-3">Setup ConstructionPlan : Player1</h2>
+          <h2 className="text-light my-3">Setup ConstructionPlan : Player1</h2>
           <div
             style={{
               display: "flex",
@@ -201,7 +204,7 @@ function SetConstructionPlanPlayer1() {
                   onChange={handleEditorChange}
                   options={{
                     scrollBeyondLastLine: false,
-                    fontSize: "17px",
+                    fontSize: "20px",
                   }}
                 />
               </div>
@@ -224,19 +227,9 @@ function SetConstructionPlanPlayer1() {
           </div>
 
           <div className="text-center my-1">
-            {/*
-            <Link href="/game_setup/SetConfigurationPlan">
-              <button
-                type="button"
-                className="btn btn-primary"
-                style={{ width: "10rem" }}
-              >
-                Back
-              </button>
-            </Link>
-          */}
             <button
-              className="btn btn-info me-4"
+              className="btn btn-info me-4 fs-3"
+              style={{ width: "12rem", height: "4rem" }}
               style={{ width: "10rem" }}
               onClick={onCheck}
             >
@@ -245,7 +238,8 @@ function SetConstructionPlanPlayer1() {
 
             <button
               type="button"
-              className="btn btn-primary"
+              className="btn btn-primary fs-3"
+              style={{ width: "12rem", height: "4rem" }}
               style={{ width: "10rem" }}
               onClick={onNext}
               disabled={!isCorrectSyntax}

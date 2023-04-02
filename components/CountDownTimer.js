@@ -28,5 +28,5 @@ export default function CountDownTimer(props) {
       clearInterval(timerId.current);
     }
   }, [countdown]);
-  return <h5>⏳ : {formatTime(countdown)}</h5>;
+  return <h5 className="text-light fs-4">⏳ : {formatTime(countdown)}</h5>;
 }

@@ -109,20 +109,22 @@ function CurrentConstructionPlan() {
         <div className=" position-relative">
           <div className="  my-4 text-center">
             <button
-              className="btn btn-secondary my-3"
+              className="btn btn-secondary my-3 fs-5"
+              style={{ width: "12rem", height: "3rem" }}
               onClick={() => handleClickHomepage()}
             >
               back to homepage
             </button>
 
             <p style={{ fontSize: "200px" }}>{displayPlayer()}</p>
-            <h2 className="text-black my-3">Turn : Player {curPlayer + 1}</h2>
-            <h2 className="text-black my-3">Plan Rev Time : {displayTime()}</h2>
+            <h2 className="text-light my-3">Turn : Player {curPlayer + 1}</h2>
+            <h2 className="text-light my-3">Plan Rev Time : {displayTime()}</h2>
           </div>
 
-          <div className="d-grid gap-2 d-md-flex justify-content-md-center my-3">
+          <div className="d-grid gap-4 d-md-flex justify-content-md-center my-3">
             <button
-              className="btn btn-primary"
+              className="btn btn-primary fs-3"
+              style={{ width: "21rem", height: "4rem" }}
               onClick={() => handleClickUpdateConstructionPlan()}
             >
               UpdateConstructionPlan
@@ -130,7 +132,8 @@ function CurrentConstructionPlan() {
 
             <button
               type="button"
-              className="btn btn-primary"
+              style={{ width: "12rem", height: "4rem" }}
+              className="btn btn-primary fs-3"
               onClick={() => handleClickTerritoryPage()}
             >
               Play

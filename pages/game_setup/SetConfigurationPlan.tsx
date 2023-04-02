@@ -89,25 +89,26 @@ function SetConfigurationPlan() {
         <div className="position-relative">
           <div className="text-center my-4">
             <button
-              className="btn btn-secondary"
+              className="btn btn-secondary fs-5"
+              style={{ width: "12rem", height: "3rem" }}
               onClick={() => handleClickHomepage()}
             >
               back to homepage
             </button>
           </div>
-          <h2 className="text-center text-black my-4">
+          <h2 className="text-center text-light my-4">
             Setup ConfigurationPlan
           </h2>
           <div className="d-grid gap-2 col-3 mx-auto">
             {" "}
             <div className="input-group">
-              <span className="input-group-text">M & N</span>
+              <span className="input-group-text fs-5">M & N</span>
               <input
                 type="number"
                 min="5"
                 max="10"
                 aria-label="First name"
-                className="form-control"
+                className="form-control fs-5"
                 placeholder={m}
                 value={m}
                 onChange={(event) => {
@@ -117,13 +118,13 @@ function SetConfigurationPlan() {
                 }}
               ></input>
 
-              <span className="input-group-text">X</span>
+              <span className="input-group-text fs-5">X</span>
               <input
                 type="number"
                 min="5"
                 max="10"
                 aria-label="Last name"
-                className="form-control"
+                className="form-control fs-5"
                 placeholder={n}
                 value={n}
                 onChange={(event) => {
@@ -135,13 +136,13 @@ function SetConfigurationPlan() {
               ></input>
             </div>
             <div className="input-group">
-              <span className="input-group-text">Planning Time (min)</span>
+              <span className="input-group-text fs-5">Planning Time (min)</span>
               <input
                 type="number"
                 min="0"
                 max="60"
                 aria-label="First name"
-                className="form-control"
+                className="form-control fs-5"
                 placeholder={init_plan_min}
                 value={init_plan_min}
                 onChange={(event) => {
@@ -154,13 +155,13 @@ function SetConfigurationPlan() {
               ></input>
             </div>
             <div className="input-group">
-              <span className="input-group-text">Plannig Time (sec)</span>
+              <span className="input-group-text fs-5">Plannig Time (sec)</span>
               <input
                 type="number"
                 min="0"
                 max="59"
                 aria-label="Last name"
-                className="form-control"
+                className="form-control fs-5"
                 placeholder={init_plan_sec}
                 value={init_plan_sec}
                 onChange={(event) => {
@@ -173,13 +174,13 @@ function SetConfigurationPlan() {
               ></input>
             </div>
             <div className="input-group">
-              <span className="input-group-text">Amount Of Budget</span>
+              <span className="input-group-text fs-5">Amount Of Budget</span>
               <input
                 type="number"
                 min="0"
                 max="1000000"
                 aria-label="First name"
-                className="form-control"
+                className="form-control fs-5"
                 placeholder={init_budget}
                 value={init_budget}
                 onChange={(event) => {
@@ -192,7 +193,7 @@ function SetConfigurationPlan() {
               ></input>
             </div>
             <div className="input-group">
-              <span className="input-group-text">
+              <span className="input-group-text fs-5">
                 Amount Of Center Deposite
               </span>
               <input
@@ -200,7 +201,7 @@ function SetConfigurationPlan() {
                 min="0"
                 max="100000"
                 aria-label="Last name"
-                className="form-control"
+                className="form-control fs-5"
                 placeholder={init_center_dep}
                 value={init_center_dep}
                 onChange={(event) => {
@@ -213,13 +214,15 @@ function SetConfigurationPlan() {
               ></input>
             </div>
             <div className="input-group">
-              <span className="input-group-text">RevisePlan Time (min)</span>
+              <span className="input-group-text fs-5">
+                RevisePlan Time (min)
+              </span>
               <input
                 type="number"
                 min="0"
                 max="60"
                 aria-label="First name"
-                className="form-control"
+                className="form-control fs-5"
                 placeholder={plan_rev_min}
                 value={plan_rev_min}
                 onChange={(event) => {
@@ -231,13 +234,15 @@ function SetConfigurationPlan() {
               ></input>
             </div>
             <div className="input-group">
-              <span className="input-group-text">RevisePlan Time (sec)</span>
+              <span className="input-group-text fs-5">
+                RevisePlan Time (sec)
+              </span>
               <input
                 type="number"
                 min="0"
                 max="59"
                 aria-label="Last name"
-                className="form-control"
+                className="form-control fs-5"
                 placeholder={plan_rev_sec}
                 value={plan_rev_sec}
                 onChange={(event) => {
@@ -249,13 +254,13 @@ function SetConfigurationPlan() {
               ></input>
             </div>
             <div className="input-group">
-              <span className="input-group-text">Revise Cost</span>
+              <span className="input-group-text fs-5">Revise Cost</span>
               <input
                 type="number"
                 min="0"
                 max="100000"
                 aria-label="Last name"
-                className="form-control"
+                className="form-control fs-5"
                 placeholder={rev_cost}
                 value={rev_cost}
                 onChange={(event) => {
@@ -268,13 +273,15 @@ function SetConfigurationPlan() {
               ></input>
             </div>
             <div className="input-group">
-              <span className="input-group-text">Max Deposit Per Region</span>
+              <span className="input-group-text fs-5">
+                Max Deposit Per Region
+              </span>
               <input
                 type="number"
                 min="0"
                 max="1000000"
                 aria-label="First name"
-                className="form-control"
+                className="form-control fs-5"
                 placeholder={max_dep}
                 value={max_dep}
                 onChange={(event) => {
@@ -287,13 +294,13 @@ function SetConfigurationPlan() {
               ></input>
             </div>
             <div className="input-group">
-              <span className="input-group-text">Interest Rate %</span>
+              <span className="input-group-text fs-5">Interest Rate %</span>
               <input
                 type="number"
                 min="0"
                 max="1000"
                 aria-label="Last name"
-                className="form-control"
+                className="form-control fs-5"
                 placeholder={interest_pct}
                 value={interest_pct}
                 onChange={(event) => {
@@ -305,20 +312,14 @@ function SetConfigurationPlan() {
                 }}
               ></input>
             </div>
-            {/* 
-            <h5 className="text-black my-4">
-              state : computing{" "}
-              <Ring size={22} lineWeight={5} speed={2} color="black" /> /
-              compute finished <i className="bi bi-check-circle-fill"></i> /
-              syntax error please check again{" "}
-              <i className="bi bi-emoji-frown-fill"></i>{" "}
-            </h5>
-            */}
-            <h5></h5>
           </div>
 
           <div className="text-center">
-            <button className="btn btn-primary text-center" onClick={onNext}>
+            <button
+              className="btn btn-primary text-center fs-3 my-3"
+              style={{ width: "12rem", height: "4rem" }}
+              onClick={onNext}
+            >
               Next
             </button>
           </div>
