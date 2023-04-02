@@ -6,6 +6,7 @@ import { useDelay } from "react-use-precision-timer";
 import Editor, { Monaco } from "@monaco-editor/react";
 import Bganimation from "../../public/bganimation";
 import { motion, AnimatePresence } from "framer-motion";
+import Router from "next/router";
 
 let client: Client;
 let body: any;
@@ -13,6 +14,21 @@ let body: any;
 function CurrentConstructionPlan() {
   const [curPlan, setCurPlan] = useState("");
   const [curPlayer, setCurPlayer] = useState(0);
+
+  const handleClickHomepage = () =>
+    Router.push({
+      pathname: "/",
+    });
+
+  const handleClickUpdateConstructionPlan = () =>
+    Router.push({
+      pathname: "/game_play/UpdateConstructionPlan",
+    });
+
+  const handleClickTerritoryPage = () =>
+    Router.push({
+      pathname: "/game_play/TerritoryPage",
+    });
 
   useEffect(() => {
     if (!client) {
@@ -69,11 +85,13 @@ function CurrentConstructionPlan() {
         <Bganimation />
         <div className=" position-relative">
           <div className="  my-4 text-center">
-            <Link href="/">
-              <button className="btn btn-secondary my-3">
-                back to homepage
-              </button>
-            </Link>
+            <button
+              className="btn btn-secondary my-3"
+              onClick={() => handleClickHomepage()}
+            >
+              back to homepage
+            </button>
+
             <h2 className="text-black my-3">
               Current ConstructionPlan : Player {curPlayer}
             </h2>
@@ -101,17 +119,20 @@ function CurrentConstructionPlan() {
           </div>
 
           <div className="d-grid gap-2 d-md-flex justify-content-md-center my-3">
-            <Link href="/game_play/UpdateConstructionPlan">
-              <button className="btn btn-primary">
-                UpdateConstructionPlan
-              </button>
-            </Link>
+            <button
+              className="btn btn-primary"
+              onClick={() => handleClickUpdateConstructionPlan()}
+            >
+              UpdateConstructionPlan
+            </button>
 
-            <Link href="/game_play/TerritoryPage">
-              <button type="button" className="btn btn-primary">
-                Start
-              </button>
-            </Link>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => handleClickTerritoryPage()}
+            >
+              Start
+            </button>
           </div>
         </div>
       </motion.div>

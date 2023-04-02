@@ -8,6 +8,7 @@ import { useRef } from "react";
 import style from "styled-jsx/style";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
+import Router from "next/router";
 
 import CountDown from "../../components/CountDownTimer";
 import { Ring } from "@uiball/loaders";
@@ -22,6 +23,16 @@ function SetConstructionPlanPlayer1() {
   const [isCorrectSyntax, setIsCorrectSyntax] = useState(false);
   const [isFrist, setIsFrist] = useState(true);
   const [countDown, setCountDown] = useState(<h5>⏳ : 0</h5>);
+
+  const handleClickHomepage = () =>
+    Router.push({
+      pathname: "/",
+    });
+
+  const handleClickSetConstructionPlanPlayer2 = () =>
+    Router.push({
+      pathname: "/game_setup/SetConstructionPlanPlayer2",
+    });
 
   useEffect(() => {
     setIsCorrectSyntax(true);
@@ -99,6 +110,7 @@ function SetConstructionPlanPlayer1() {
   };
 
   const onNext = () => {
+    handleClickSetConstructionPlanPlayer2();
     if (client) {
       if (client.connected) {
         client.publish({
@@ -134,9 +146,13 @@ function SetConstructionPlanPlayer1() {
           className="position-relative text-center"
           style={{ marginTop: "1rem" }}
         >
-          <Link href="/">
-            <button className="btn btn-secondary">back to homepage</button>
-          </Link>
+          <button
+            className="btn btn-secondary"
+            onClick={() => handleClickHomepage()}
+          >
+            back to homepage
+          </button>
+
           <h2 className="text-black my-3">Setup ConstructionPlan : Player1</h2>
           <div
             style={{
@@ -153,6 +169,10 @@ function SetConstructionPlanPlayer1() {
                   language="java"
                   defaultValue={plan1}
                   onChange={handleEditorChange}
+                  options={{
+                    scrollBeyondLastLine: false,
+                    fontSize: "17px",
+                  }}
                 />
               </div>
             </div>
@@ -192,17 +212,16 @@ function SetConstructionPlanPlayer1() {
             >
               check
             </button>
-            <Link href="/game_setup/SetConstructionPlanPlayer2">
-              <button
-                type="button"
-                className="btn btn-primary"
-                style={{ width: "10rem" }}
-                onClick={onNext}
-                disabled={!isCorrectSyntax}
-              >
-                Next
-              </button>
-            </Link>
+
+            <button
+              type="button"
+              className="btn btn-primary"
+              style={{ width: "10rem" }}
+              onClick={onNext}
+              disabled={!isCorrectSyntax}
+            >
+              Next
+            </button>
           </div>
         </div>
       </motion.div>

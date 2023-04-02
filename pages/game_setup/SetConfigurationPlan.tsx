@@ -8,6 +8,7 @@ import Bganimation from "../../public/bganimation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import { Ring } from "@uiball/loaders";
+import Router from "next/router";
 
 let client: Client;
 
@@ -24,6 +25,16 @@ function SetConfigurationPlan() {
   const [max_dep, setMax_dep] = useState(1000000);
   const [interest_pct, setInterest_pct] = useState(5);
 
+  const handleClickHomepage = () =>
+    Router.push({
+      pathname: "/",
+    });
+
+  const handleClickSetConstructionPlanPlayer1 = () =>
+    Router.push({
+      pathname: "/game_setup/SetConstructionPlanPlayer1",
+    });
+
   useEffect(() => {
     if (!client) {
       client = new Client({
@@ -35,6 +46,7 @@ function SetConfigurationPlan() {
   }, []);
 
   const onNext = () => {
+    handleClickSetConstructionPlanPlayer1();
     if (client) {
       if (client.connected) {
         client.publish({
@@ -71,9 +83,12 @@ function SetConfigurationPlan() {
       >
         <div className="position-relative">
           <div className="text-center my-4">
-            <Link href="/">
-              <button className="btn btn-secondary">back to homepage</button>
-            </Link>
+            <button
+              className="btn btn-secondary"
+              onClick={() => handleClickHomepage()}
+            >
+              back to homepage
+            </button>
           </div>
           <h2 className="text-center text-black my-4">
             Setup ConfigurationPlan
@@ -296,11 +311,9 @@ function SetConfigurationPlan() {
           </div>
 
           <div className="text-center">
-            <Link href="/game_setup/SetConstructionPlanPlayer1">
-              <button className="btn btn-primary text-center" onClick={onNext}>
-                Next
-              </button>
-            </Link>
+            <button className="btn btn-primary text-center" onClick={onNext}>
+              Next
+            </button>
           </div>
         </div>
       </motion.div>

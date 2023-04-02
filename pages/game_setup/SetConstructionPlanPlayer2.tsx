@@ -8,6 +8,7 @@ import Bganimation from "../../public/bganimation";
 import CountDown from "../../components/CountDownTimer";
 import { motion, AnimatePresence } from "framer-motion";
 import { Ring } from "@uiball/loaders";
+import Router from "next/router";
 
 let client: Client;
 let time: number;
@@ -19,6 +20,16 @@ function SetConstructionPlanPlayer2() {
   const [isCorrectSyntax, setIsCorrectSyntax] = useState(false);
   const [isFrist, setIsFrist] = useState(true);
   const [countDown, setCountDown] = useState(<h5>⏳ : 0</h5>);
+
+  const handleClickHomepage = () =>
+    Router.push({
+      pathname: "/",
+    });
+
+  const handleClickCurrentConstructionPlan = () =>
+    Router.push({
+      pathname: "/game_play/CurrentConstructionPlan",
+    });
 
   useEffect(() => {
     setIsCorrectSyntax(true);
@@ -122,6 +133,7 @@ function SetConstructionPlanPlayer2() {
 
   const onStart = () => {
     /* onceTimer.start(); */
+    handleClickCurrentConstructionPlan();
   };
 
   //ของ code editor
@@ -146,9 +158,13 @@ function SetConstructionPlanPlayer2() {
           className="position-relative text-center"
           style={{ marginTop: "1rem" }}
         >
-          <Link href="/">
-            <button className="btn btn-secondary">back to homepage</button>
-          </Link>
+          <button
+            className="btn btn-secondary"
+            onClick={() => handleClickHowtoPlay()}
+          >
+            back to homepage
+          </button>
+
           <h2 className="text-black my-3">Setup ConstructionPlan : Player2</h2>
           <div
             style={{
@@ -165,6 +181,10 @@ function SetConstructionPlanPlayer2() {
                   language="java"
                   defaultValue={plan2}
                   onChange={handleEditorChange}
+                  options={{
+                    scrollBeyondLastLine: false,
+                    fontSize: "17px",
+                  }}
                 />
               </div>
             </div>
