@@ -2,7 +2,7 @@ import React from "react";
 
 function StatusDisplay(props: any) {
   return (
-    <div>
+    <div className="">
       <div className="text-warning-emphasis">
         <h2>current player index : {props?.curPlayer}</h2>
         <h2>game status : {props?.status}</h2>
@@ -12,6 +12,7 @@ function StatusDisplay(props: any) {
         <h2>direction : {props.action?.direction}</h2>
         <h2>value : {props.action?.value}</h2>
       </div>
+      <br />
       <div className="text-success-emphasis">
         <h2>player index {props.players[0]?.playerIndex}</h2>
         <h2>budget : {props.players[0]?.budget}</h2>
@@ -25,6 +26,7 @@ function StatusDisplay(props: any) {
         </h2>
         <h2>status : {props.players[0]?.status}</h2>
       </div>
+      <br />
       <div className="text-primary-emphasis">
         <h2>player index {props.players[1]?.playerIndex}</h2>
         <h2>budget : {props.players[1]?.budget}</h2>
