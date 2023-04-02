@@ -96,7 +96,7 @@ function Test3(props: any) {
   };
 
   if (props.territory[0].length === 0) {
-    grid(10, 10);
+    grid(8, 10);
   } else {
     grid(props.territory.length, props.territory[0].length);
   }
@@ -105,7 +105,7 @@ function Test3(props: any) {
 
   return (
     <div className="App">
-      <HexGrid width={1100} height={1200} viewBox="-4 -50 1 135">
+      <HexGrid width={1200} height={1200} viewBox="-4 -50 1 135">
         <Layout
           size={hexagonSize}
           flat={true}

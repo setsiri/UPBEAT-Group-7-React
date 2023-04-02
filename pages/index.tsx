@@ -64,14 +64,14 @@ export default function Home() {
           </div>
           <div className="d-grid gap-2 col-1 mx-auto ">
             <button
-              className="btn btn-primary"
+              className="btn btn-primary btn-lg"
               onClick={() => handleClickHowtoPlay()}
             >
               how to play
             </button>
 
             <button
-              className="btn btn-primary"
+              className="btn btn-primary btn-lg"
               onClick={() => handleClickSetConfigurationPlan()}
             >
               start game
