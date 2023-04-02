@@ -106,14 +106,14 @@ function SetConfigurationPlan() {
               <input
                 type="number"
                 min="5"
-                max="10"
+                max="15"
                 aria-label="First name"
                 className="form-control fs-5"
                 placeholder={m}
                 value={m}
                 onChange={(event) => {
                   if (Number(event.target.value) < 5) setM(5);
-                  else if (Number(event.target.value) > 10) setM(10);
+                  else if (Number(event.target.value) > 15) setM(15);
                   else setM(Number(event.target.value));
                 }}
               ></input>
@@ -122,14 +122,14 @@ function SetConfigurationPlan() {
               <input
                 type="number"
                 min="5"
-                max="10"
+                max="20"
                 aria-label="Last name"
                 className="form-control fs-5"
                 placeholder={n}
                 value={n}
                 onChange={(event) => {
                   if (Number(event.target.value) < 5) setN(5);
-                  else if (Number(event.target.value) > 10) setN(10);
+                  else if (Number(event.target.value) > 20) setN(20);
                   else setN(Number(event.target.value));
                   //setN(Number.parseInt(Number(event.target.value)));
                 }}

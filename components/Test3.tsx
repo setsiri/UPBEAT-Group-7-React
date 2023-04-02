@@ -4,7 +4,10 @@ import region from "@/dataTypes/territory";
 
 function Test3(props: any) {
   const hexagons: Hex[] = [];
-  const hexagonSize = { x: 7, y: 7 };
+  // 7*7 for 8*10
+  // 5*5 for 10*15
+  // 3.5*3.5 for 15*20
+  const hexagonSize = { x: 3.5, y: 3.5 };
 
   const evenq_to_cube = (row: number, col: number) => {
     var q = col;
@@ -96,16 +99,18 @@ function Test3(props: any) {
   };
 
   if (props.territory[0].length === 0) {
-    grid(8, 10);
+    // grid(8, 10);
+    // grid(10, 15);
+    grid(15, 20);
   } else {
     grid(props.territory.length, props.territory[0].length);
   }
 
   /** console.log(hexagons); */
-
+  // "-4 -50 1 135"
   return (
     <div className="App">
-      <HexGrid width={1200} height={1200} viewBox="-4 -50 1 135">
+      <HexGrid width={1200} height={1200} viewBox="-4 -42 1 135">
         <Layout
           size={hexagonSize}
           flat={true}
