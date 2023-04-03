@@ -16,8 +16,13 @@ import { motion, AnimatePresence, color } from "framer-motion";
 function homeButton() {
   return (
     <Link href="/">
-      <div className="text-center">
-        <button className="btn btn-secondary">back to homepage</button>
+      <div className="text-center my-4">
+        <button
+          className="btn btn-secondary fs-5"
+          style={{ width: "12rem", height: "3rem" }}
+        >
+          back to homepage
+        </button>
       </div>
     </Link>
   );
@@ -52,7 +57,7 @@ const ScrollToTop = () => {
       {" "}
       {showTopBtn && (
         <button
-          className="btn btn-secondary"
+          className="btn btn-secondary fs-5"
           style={{
             height: "60px",
             width: "60px",
@@ -184,7 +189,9 @@ function HowtoPlay() {
             style={{ margin: "1rem" }}
           >
             งานกลุ่มของวิชา 261200 oop programming เสนอ อ.ชินวัตร อิศราดิสัยกุล
-            <p className="text-center  mx-5">สมาชิก : com, new ,stamp</p>
+            <p className="text-center  mx-5">
+              สมาชิกกลุ่มที่ 7 : com, new ,stamp
+            </p>
           </p>
           {homeButton()}
           <ScrollToTop />
