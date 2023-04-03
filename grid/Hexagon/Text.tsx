@@ -21,7 +21,7 @@ export function Text(props: TextProps) {
       y={y ? y : "0.3em"}
       textAnchor="middle"
       {...rest}
-      style={{ fontSize: "0.2rem", fill: color }}
+      style={{ fontSize: "0.1125rem", fill: color }}
     >
       {children}
     </text>

@@ -36,6 +36,13 @@ function TerritoryPage() {
     });
   });
 
+  const onDone = () => {
+    nextTurn();
+    Router.push({
+      pathname: "/game_play/CurrentConstructionPlan",
+    });
+  };
+
   useEffect(() => {
     if (isFrist) {
       setIsFrist(false);
@@ -101,9 +108,11 @@ function TerritoryPage() {
               nextPlayer.start();
             }
           });
+          nextAction();
         },
       });
       client.activate();
+
       timer.start();
     }
   }, []);
@@ -135,23 +144,6 @@ function TerritoryPage() {
       <div>
         {" "}
         <div className="ms-5 pt-4 position-relative">
-          {/*          
-          <div className="d-flex gap-2 mx-5  text-black">
-            
-        <div className="  my-3 text-black">
-          <button className="btn btn-secondary my-3">
-            <Link href="/">back to homepage</Link>
-          </button>
-        </div>
-
-            <div
-              className="  my-3 text-black"
-              onClick={() => nextPlayer.start()}
-            >
-              <button className="btn btn-danger my-3">next action</button>
-            </div>
-          </div>
- */}
           <div
             className="d-flex gap-2 mx-5 my-5"
             style={{
@@ -180,7 +172,7 @@ function TerritoryPage() {
                 ></StatusDisplay>
               </div>
 
-              <div className="my-3 text-black text-center" onClick={nextTurn}>
+              <div className="my-3 text-black text-center" onClick={onDone}>
                 <button
                   className="btn btn-danger my-3 fs-3"
                   style={{ width: "12rem", height: "4.5rem" }}
